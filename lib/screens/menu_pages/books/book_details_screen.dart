@@ -16,8 +16,9 @@ class BookDetailsScreen extends StatefulWidget {
   String bookName;
   String author;
   String description;
+  String price;
 
-  BookDetailsScreen(this.image, this.orederLink, this.linkDownload, this.bookName, this.author, this.description, this.hero);
+  BookDetailsScreen(this.image, this.orederLink, this.linkDownload, this.bookName, this.author, this.description, this.hero, this.price);
 
   @override
   State<BookDetailsScreen> createState() => _BookDetailsScreenState();
@@ -82,7 +83,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                              child: Text("5 AZN", textAlign: TextAlign.center, style: GoogleFonts.alata(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),),
+                              child: FittedBox(child: Text("${widget.price} AZN", textAlign: TextAlign.center, style: GoogleFonts.alata(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),)),
                             ),
                           ),
                           SizedBox(height: 50,),
@@ -101,13 +102,15 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                                 onTap: (){
                                   _launchUrl("https://form.jotform.com/200363853004445");
                                 },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("Sifariş et", textAlign: TextAlign.center, style: GoogleFonts.alata(fontSize: 20, fontWeight: FontWeight.w500),),
-                                    Icon(Icons.shopping_cart_outlined),
+                                child: FittedBox(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Sifariş et", textAlign: TextAlign.center, style: GoogleFonts.alata(fontSize: 20, fontWeight: FontWeight.w500),),
+                                      Icon(Icons.shopping_cart_outlined),
 
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -149,13 +152,15 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text("Yüklə", textAlign: TextAlign.center, style: GoogleFonts.alata(fontSize: 20, fontWeight: FontWeight.w500),),
-                                    Icon(Icons.download),
+                                child: FittedBox(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Yüklə", textAlign: TextAlign.center, style: GoogleFonts.alata(fontSize: 20, fontWeight: FontWeight.w500),),
+                                      Icon(Icons.download),
 
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -172,7 +177,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Text("Kitab sifarişi", style: GoogleFonts.alata(fontSize: 24, color: appBarColor.shade300, fontWeight: FontWeight.bold), textAlign: TextAlign.justify, ),
+                child: Text("Kitab sifarişi", style: GoogleFonts.alata(fontSize: 20, color: appBarColor, fontWeight: FontWeight.bold), textAlign: TextAlign.justify, ),
               ),
             ),
             Padding(
@@ -214,7 +219,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Text("Kitab haqqında", style: GoogleFonts.alata(fontSize: 24, color: appBarColor.shade300, fontWeight: FontWeight.bold), textAlign: TextAlign.justify, ),
+                child: Text("Kitab haqqında", style: GoogleFonts.alata(fontSize: 20, color: appBarColor, fontWeight: FontWeight.bold), textAlign: TextAlign.justify, ),
               ),
             ),
             Padding(

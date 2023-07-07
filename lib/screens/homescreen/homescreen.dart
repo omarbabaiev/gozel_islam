@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:card_swiper/card_swiper.dart';
+import 'package:gozel_islam/screens/homescreen/KufrCard.dart';
+import 'package:gozel_islam/screens/homescreen/book_card.dart';
 import 'package:gozel_islam/screens/homescreen/prayer_time_table/prayer_time_table_screen.dart';
-import 'package:gozel_islam/screens/homescreen/youtube_widget.dart';
 import 'package:gozel_islam/screens/menu_pages/about_us/about_us.dart';
 import 'package:gozel_islam/screens/menu_pages/books/book_screen.dart';
 import 'package:gozel_islam/screens/menu_pages/compass_screen/compass_main.dart';
+import 'package:gozel_islam/screens/menu_pages/dini_bilgiler/all_topics.dart';
 import 'package:gozel_islam/screens/menu_pages/ecards/ecards.dart';
 import 'package:gozel_islam/screens/menu_pages/esmaul_husna/esma_husna.dart';
 import 'package:gozel_islam/screens/menu_pages/filmler_screen/filmler_screen.dart';
@@ -17,12 +19,16 @@ import 'package:gozel_islam/screens/homescreen/home_screen_widgets.dart';
 import 'package:gozel_islam/screens/menu_pages/links/links.dart';
 import 'package:gozel_islam/screens/menu_pages/our_shop/our_shop.dart';
 import 'package:gozel_islam/screens/menu_pages/qeza_namaz/qeza_namaz.dart';
+import 'package:gozel_islam/screens/menu_pages/recent_list/recent_list_page.dart';
 import 'package:gozel_islam/screens/menu_pages/sual_gonder/sual_gonder.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../constants.dart';
 import '../menu_pages/youtube_card/screens/home_screen.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../menu_pages/youtube_card/models/channel_model.dart';
+import '../menu_pages/youtube_card/services/api_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 
@@ -34,13 +40,54 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
- var prayerTime;
+  var channel;
+  var video;
+  var _isYoutube = true;
+  _initChannel() async {
+    Channel _channel = await APIService2.instance
+        .fetchChannel(channelId: 'UCV5G4F5n17ZCVWtGUxJ6z4A');
+    setState(() {
+      _isYoutube = false;
+      channel = _channel;
+      video = channel!.videos[0];
+    });
+  }
+ var basePrayerTime;
+  var addPrayerTime;
  GetStorage box = GetStorage();
  var movzuAdiYenilenen = [];
  var linkMovzuYenilenen = [];
  var bashliq;
  var metin;
  var hikmetliSoz;
+
+  var hikmetliSozShare;
+
+  var metinShare;
+  List months = [
+    'Yanvar',
+    'Fevral',
+    'Mart',
+    'Aprel',
+    'May',
+    'İyun',
+    'İyul',
+    'Avqust',
+    'Sentyabr',
+    'Oktyabr',
+    'Noyabr',
+    'Dekabr'
+  ];
+
+  List weekday = [
+    "Bzr. ertəsi",
+    "Çər. axşamı",
+    "Çərşənbə",
+    "Cümə axşamı",
+    "Cümə",
+    "Şənbə",
+    "Bazar"
+  ];
 
  Future<void> getTextData() async {
    var _url = Uri.parse("https://www.gozelislam.com/");
@@ -51,9 +98,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
    var resHikmet = document.getElementsByClassName("top-block2").forEach((element) {
      var hikmetliSoz;
      setState(() {
-       hikmetliSoz = element.children[0].children[2].text.toString();
+       hikmetliSoz = element.children[0].children[2].outerHtml;
      });
      box.write("hikmetliSoz", hikmetliSoz);
+     box.write("hikmetliSozshare", element.children[0].children[2].text.toString());
+
    });
 
 
@@ -63,12 +112,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
      var bashliq; var metin;
      setState(() {
        bashliq = element.children[1].children[0].children[2].children[0]
-           .children[0].children[0].children[0].text
-           .toString();
-       metin = element.children[1].children[0].children[5].text.toString();
+           .children[0].children[0].children[0].text.toString();
+       metin = element.children[1].children[0].children[5].outerHtml;
      });
      box.write("bashliq", bashliq);
      box.write("metin", metin);
+     box.write("metinshare", element.children[1].children[0].children[5].text.toString());
+
    });
    //
    // var resUpdatedTopics = document.getElementsByClassName("blog-sidebar").forEach((element)async {
@@ -109,6 +159,47 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
    // print(movzuAdiYenilenen);
 
  }
+ Future<void> getGununMovzusu() async {
+
+   var response = await http.get(Uri.parse("https://www.gozelislam.com/gunun-sohbeti.html"));
+   var response1 = await http.get(Uri.parse("https://www.gozelislam.com/"));
+
+   final body = response.body;
+   final document = parser.parse(body);
+   var res = document.getElementsByClassName("show-more").forEach
+     ((element)async {
+     // metin= element.outerHtml;
+     setState(() {
+       box.write("movzuGun", element.outerHtml);
+     });
+   });
+   var res1 = document.getElementsByClassName("panel-heading").forEach
+     ((element)async {
+     bashliq = element.children[0].text.toString();
+     setState(() {
+       box.write("bashliqGun", element.children[0].text.toString());
+     });
+   });
+
+   final body1 = response1.body;
+   final document1 = parser.parse(body1);
+   var resMovzu = document1
+       .getElementsByClassName("col-md-8 col-sm-12 col-xs-12")
+       .forEach((element) async {
+     var bashliq; var metin;
+     setState(() {
+       bashliq = element.children[1].children[0].children[2].children[0]
+           .children[0].children[0].children[0].text.toString();
+       metin = element.children[1].children[0].children[5].outerHtml;
+     });
+     box.write("bashliq", bashliq);
+     box.write("metin", metin);
+     box.write("metinshare", element.children[1].children[0].children[5].text.toString());
+
+   });
+
+
+ }
 
  var _bashliq2;
  var _metin2;
@@ -120,11 +211,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
    final document = parser.parse(body);
    var res = document.getElementsByClassName("blog-info").forEach((element)async {
 
-     await  box.write("_metin3",element.children[2].children[1].text.toString() );
+     await  box.write("_metin3",element.children[2].children[1].outerHtml );
+     await  box.write("_metin3share",element.children[2].children[1].text.toString() );
      await box.write("_bashliq3", element.children[0].text.toString());
      setState(() {
        _bashliq2 = box.read("_bashliq3");
        _metin2 = box.read("_metin3");
+       metin3share = box.read("_metin3share");
      });
    });
  }
@@ -138,9 +231,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
        _bashliq2 =
            element.children[0].children[0].children[0].children[0].children[0]
                .text.toString();
-       _metin2 = element.children[0].children[0].children[1].text.toString();
+       _metin2 = element.children[0].children[0].children[1].outerHtml;
      });
      box.write("_metin2", _metin2);
+     box.write("_metin2share", element.children[0].children[0].children[1].text.toString());
      box.write("_bashliq2", _bashliq2);
      box.write("_link2",
          element.children[0].children[0].children[0].children[0]
@@ -148,17 +242,26 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
    });
    print(box.read("_link2"));
  }
-
-
+var zor;
+var metin3share;
  @override
   void initState() {
-   getMovzuPage();
+   _initChannel();
+   metin3share = box.read("_metin3share")??daylyTopic;
     bashliq = box.read("bashliq") ?? "Rəsm Çəkmək";
     metin = box.read("metin") ?? daylyTopic;
-    hikmetliSoz = box.read("hikmetliSoz") ?? hikmetFakeData;
-    prayerTime = box.read("time")["${Jiffy.now().dayOfYear}"]["baseTime"];
+   metinShare = box.read("metinshare") ?? daylyTopic;
+
+   hikmetliSoz = box.read("hikmetliSoz") ?? hikmetFakeData;
+   hikmetliSozShare = box.read("hikmetliSozshare") ?? hikmetFakeData;
+
+   basePrayerTime = box.read("time")["${Jiffy.now().dayOfYear}"]["baseTime"];
+   addPrayerTime = box.read("time")["${Jiffy.now().dayOfYear}"]["extraTime"];
+   zor = box.read("time");
+   getGununMovzusu();
     super.initState();
   }
+
 
   @override
   void dispose() {
@@ -175,18 +278,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
         child: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: DrawerHeader(
-                  decoration: BoxDecoration(color: appBarColor, borderRadius: BorderRadius.circular(15)),
-                  child: Center(child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Gözəl İslam", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 40),),
-                      Text("Dini kitablar, dini mövzular, sual cavab" , style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
-                      Text("www.gozelislam.com", style: GoogleFonts.arimaMadurai(color: Colors.white60, fontWeight: FontWeight.bold, ),),],
-                  ))),
-            ),
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.white),
+              child: Image.asset("assets/header.png"),),
             ListTile(
               leading: Icon(Icons.home_outlined),
               title: Text("Əsas səhifə", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
@@ -196,6 +290,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               },
               leading: Icon(Icons.book_outlined),
               title: Text("Dini kitablar", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+        ListTile(
+          onTap: (){
+            Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>DiniBilgilerPage()));
+          },
+          leading: Icon(Icons.view_day_outlined),
+          title: Text("Dini bilgilər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+            ListTile(
+              onTap: (){
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>RecentListPage()));
+              },
+              leading: Icon(Icons.receipt),
+              title: Text("Sonra oxunacaqlar", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+            ListTile(
+              onTap: (){
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>PrayerTimeTable()));
+              },
+              leading: Icon(Icons.calendar_month),
+              title: Text("Namaz təqvimi", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
               onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>OurShop()));
@@ -221,12 +333,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               leading: Icon(Icons.compass_calibration_outlined),
               title: Text("Kompass", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
 
+
             ListTile(
-              onTap: (){
-                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>QezaNamaz()));
-              },
-              leading: Icon(Icons.calculate_outlined),
-              title: Text("Qəza hesablama", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+            onTap: (){
+            Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>YouTubeCard()));},
+            leading: Icon(Icons.video_collection_outlined),
+            title: Text("Dini Videolar", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
 
             ListTile(
               onTap: (){
@@ -240,6 +352,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               },
               leading: Icon(Icons.music_note),
               title: Text("İlahilər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+        ListTile(
+          onTap: (){
+            Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>QezaNamaz()));
+          },
+          leading: Icon(Icons.calculate_outlined),
+          title: Text("Qəza hesablama", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
               onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>EsmaScreen()));
@@ -251,13 +369,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>LinksScreen()));
               },
               leading: Icon(Icons.link_rounded),
-              title: Text("Linklər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
-            ListTile(
-              onTap: (){
-                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>YouTubeCard()));
-              },
-              leading: Icon(Icons.video_collection_outlined),
-              title: Text("Video", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+              title: Text("Faydalı linklər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
               onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>SendEmail()));
@@ -269,8 +381,28 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>AboutUs()));
 
               },
-              leading: Icon(Icons.home_outlined),
+              leading: Icon(Icons.share),
+              title: Text("Paylaş", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+            ListTile(
+              onTap: ()
+                async{
+                  await Share.share("${"Dini Mövzular, Söhbətlər və Sual-Cavab\n${textShareText}"}");
+                },
+              leading: Icon(Icons.star_rate_outlined),
+              title: Text("Dəyərləndir", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+            ListTile(
+              onTap: (){
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>AboutUs()));
+
+              },
+              leading: Icon(Icons.info_outline),
               title: Text("Haqqımızda", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+            ListTile(
+              onTap: (){
+
+              },
+              leading: Icon(Icons.bug_report_outlined),
+              title: Text("Əlaqə", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             Divider(),
             ListTile(
               title: Text("Version 1.0.0", textAlign: TextAlign.center, style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
@@ -280,13 +412,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       ),
       appBar: AppBar(
         actions:
-        [
-          IconButton( onPressed: () {
-            Navigator.push(context, CupertinoPageRoute(builder: (context)=>PrayerTimeTable()));
-          }, icon: Icon(Icons.calendar_month),),
-          IconButton( onPressed: () {  }, icon: Icon(Icons.share),),
-
-
+        [IconButton( onPressed: () async{
+            await Share.share("${"Dini Mövzular, Söhbətlər və Sual-Cavab\n${textShareText}"}");
+    }, icon: Icon(Icons.share),),
         ],
         scrolledUnderElevation: 3,
         iconTheme: IconThemeData(color: Colors.white),
@@ -314,15 +442,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             padding: EdgeInsets.only(bottom: 50),
             children: [
               headerContainers(context),
-              buildPrayerTimes(context, prayerTime["sabah"], prayerTime["gunorta"], prayerTime["ikindi"], prayerTime["axsam"], prayerTime["yatsi"], ),
-              // banner(context),
-              buildHikmet(context, hikmetliSoz),
-              buildMovzu(context, bashliq, metin),
-              SohbetCard(),
-              buildMaraqliMovzular( box.read("_bashliq3")??"Dişdə dolğu və diş qapağının olması", box.read("_metin3")?? maraqliMetin, box.read("_link2"), context ),
+              buildPrayerTimes(context, basePrayerTime , addPrayerTime,
+                  "${"${zor['${Jiffy.now().dayOfYear}']['baseTime']["todayHijrahDate"]}".capitalize}" ,
+                  "${DateTime.parse("${zor['${Jiffy.now().dayOfYear}']['baseTime']["todayDate"]}").day} ${months[DateTime.parse("${zor['${Jiffy.now().dayOfYear}']['baseTime']["todayDate"]}").month - 1]}, ${weekday[DateTime.parse("${zor['${Jiffy.now().dayOfYear}']['baseTime']["todayDate"]}").weekday - 1]}",),
+              KufrCard(),
+              buildHikmet(context, hikmetliSoz, hikmetliSozShare),
+              buildMovzu(context, bashliq, metin, metinShare ),
+              buildMaraqliMovzular( box.read("_bashliq3")??"Dişdə dolğu və diş qapağının olması", box.read("_metin3")?? maraqliMetin, box.read("_link2"),  metin3share, context ),
+              _isYoutube ? SizedBox()  : buildYoutube(context, video,  ),
               buildOtherMovzu(context, ),
               buildSocial(),
-              buildButtons(context)
 
 
 

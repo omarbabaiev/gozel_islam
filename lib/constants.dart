@@ -370,7 +370,8 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
        "Tam Elmihal Səadəti-Əbədiyyə",
        "Hüseyin Hilmi İşıq",
        tamElmihal,
-       "1"
+       "1",
+       "15"
    ),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-06/1559855709_index.jpg",
@@ -379,7 +380,8 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
        "MƏKTUBAT - I Cild",
        "Hüseyin Hilmi İşıq",
        mektubat,
-       "2"
+       "2",
+       "12"
 
    ),
    BookTile(
@@ -389,6 +391,7 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
        "Qurani Kərim Təcvid üçün Əlifba",
        "",
        elifba,
+       "3",
        "3"
 
    ),
@@ -399,7 +402,8 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
        "Sevgili Peyğəmbərim (Sallallahu Əleyhi və Səlləm)",
        "Hüseyin Hilmi İşıq",
        sevgiliPey,
-       "4"
+       "4",
+       "6"
 
    ),
    BookTile(
@@ -408,35 +412,35 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
        "https://www.gozelislam.com/uploads/files/2021-02/1613040685_namaz-yeni2020-144x214.pdf",
        "Namaz Kitabı",
        "Hüseyin Hilmi İşıq",
-       namazKitabiAz, "5"),
+       namazKitabiAz, "5", "4"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-09/1568213187_33742147-288-k659551.jpg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-09/1568294123_10_namaz_kitabi.pdf",
        "Namaz Kitabı",
        "Hasan Yavaş",
-       namazKitabiTr, "6"),
+       namazKitabiTr, "6", "3"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-06/1559858014_whatsapp-image-2019-06-07-at-01_52_32.jpeg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2021-02/1613040685_namaz-yeni2020-144x214.pdf",
        "İki Cihan Günəşi Həzrəti Məhəmməd - in Həyatı (Sallallahu Əleyhi və Səlləm)",
        "Prof.Dr. Ramazan Ayvallı",
-       hayatiTr, "7"),
+       hayatiTr, "7", "6"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-06/1559857564_sevahid-un-nubuvve-peygamberlik-mujdeleri.jpg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-06/1559857537_11_sevahidun_nubuvve.pdf",
        "Şəvâhid-ün Nübüvvə",
        "Hüseyin Hilmi İşıq",
-       shevahid, "8"),
+       shevahid, "8", "4"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-06/1559858242_004.png",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-06/1559856949_06_kiyamet_ve_ahiret.pdf",
        "Qiyamət və Axirət",
        "Hüseyin Hilmi İşıq",
-       kiyametveahirettr, "9"
+       kiyametveahirettr, "9", "4"
    ),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-06/1559856706_menakb-cihar-yar-i-guzin.jpg",
@@ -444,112 +448,112 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
        "https://www.gozelislam.com/uploads/files/2019-06/1559856759_12_menakibi_cihar_yari_guzin.pdf",
        "Menaqıb-ı Çihar Yar-i Güzin",
        "Hüseyin Hilmi İşıq",
-       menakib, "10"),
+       menakib, "10", "5"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-06/1559856039_kymetsiz-yazlar-kymeti-bulunamyan-yazlar.jpg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-06/1559856031_09_kiymetsiz_yazilar.pdf",
        "Qiymətsiz Yazılar",
        "Hüseyin Hilmi İşıq",
-       kiymetsiz, "11"),
+       kiymetsiz, "11", "4"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-05/1558894612_slam.jpg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-05/1558977793_islam-exlaqi.pdf",
        "İslam Əxlaqı",
        "Muhamməd Xadimi",
-       islamExlaqi, "12"),
+       islamExlaqi, "12", "4"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2020-02/1580658771_2.png",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-05/1559235651_c_elmihali.pdf",
        "Cənnət Yolu Elmihalı",
        "Hüseyin Hilmi İşıq",
-       cennetYolu, "13"),
+       cennetYolu, "13", "4"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-05/1558890145_menkibe1.jpg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-05/1559235919_kitab-2016.pdf",
        "Azərbaycan övliyaları və mənkibələr",
        "Hüseyin Hilmi İşıq",
-       ovliyalar, "14"),
+       ovliyalar, "14", "3"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-09/1568381351_whatsapp-image-2019-09-13-at-12_13_13.jpeg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-09/1568381377_mybelovedprophet-ru.pdf",
        "Жизнь Пророка Мухаммеда",
        "Prof.Dr. Ramazan Ayvallı",
-       sebgiliPeygRus, "15"),
+       sebgiliPeygRus, "15", "5"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2021-03/1614829513_herkese_lazim_olan_iman_az.jpg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2021-03/herkese_lazim_olan_iman.pdf",
        "Hərkəsə Lazım Olan İman",
        "Hüseyin Hilmi İşıq",
-       herkeseLazimOlan, "16"),
+       herkeseLazimOlan, "16", "3"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-09/1568293907_whatsapp-image-2019-09-12-at-17_10_31.jpeg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-09/1568294041_04_islam_ahlaki.pdf",
        "İslam Əxlaqı (Türkcə)",
        "Hüseyin Hilmi İşıq",
-       islamAhlakiTr, "17"),
+       islamAhlakiTr, "17", "5"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2021-12/1639303694_qiyamet_aixret_kitab_dini.jpeg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-05/qiyamet_ve_axiret.pdf",
        "Qiyamət və Axirət (Azərbaycan dilində)",
        "Hüseyin Hilmi İşıq",
-       kiyamet, "18"),
+       kiyamet, "18", "3"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2021-08/1628617345_main365.jpg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-06/1560018481_dua.pdf",
        "365 Dua",
        "Hüseyin Hilmi İşıq",
-       gundua, "19"),
+       gundua, "19", "8"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-09/1568380886_b042.png",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-09/1568380990_kniga-o-namaze.pdf",
        "Молитвенник (Книга о намазе)",
        "Hüseyin Hilmi İşıq",
-       molitvennik, "20"),
+       molitvennik, "20", "3"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-09/1568379821_b040.png",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-09/1568380799_islam.pdf",
        "Религия Ислам",
        "Hüseyin Hilmi İşıq",
-       religiyaIslam, "21"),
+       religiyaIslam, "21", "3"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-09/1568212110_thumbnail_ey-2.jpg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-09/1568294071_ey-oul-elmihal-son.pdf",
        "Ey Oğul Elmihalı",
        "Hüseyin Hilmi İşıq",
-       eyOgul, "22"),
+       eyOgul, "22", "4"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-06/1559994324_27823_ryvgh_1495274476.jpg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-06/1560017598_rehberlmihali.pdf",
        "Rəhbər Elmihal",
        "Hüseyin Hilmi İşıq",
-       rehberIlmihal, "23"),
+       rehberIlmihal, "23", "6"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2020-10/1602397050_o-sin-moy-dini-kitab-rusca.png",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-05/o_sin_moi.pdf",
        "О Сын Мой",
        "Hüseyin Hilmi İşıq",
-       osinMoy, "24"),
+       osinMoy, "24", "3"),
    BookTile(
        "https://www.gozelislam.com/uploads/posts/2019-06/1559994859_whatsapp-image-2019-06-08-at-13_55_49.jpeg",
        "https://form.jotform.com/200363853004445",
        "https://www.gozelislam.com/uploads/files/2019-05/o_sin_moi.pdf",
        "Səadətin Mənbəyi - Ailə",
        "Mehmet Oruç",
-       aile, "25"),
+       aile, "25", "8"),
  ];
  var aile = "İslama görə : Ailə və Qadının önəmi,Evlilik və Həyatı,Uşaq təhsili mövzularının qələmə alındığı,qadın,kişi,uşaq və ailənin hər fərdinin oxuması lazım olan bir kitab!";
  var osinMoy = "Это сборник книг великих исламских ученых мазхаба Ханафи, собранных хазрата Сулейман бин Джеза’, являющегося ученым при Османском государстве. В основе этой книги лежит Положение о поклонении, о вере, о правах отца и матери, о посещении родственников, о правилах приличия во время употреблении пищи, о том, как быть истинным мусульманином, а также, в конце книги, вы сможете увидеть перевод одиннадцати писем хазрата Мухаммед Масум Фаруки, которые являются «Пищей для души».";
@@ -609,3 +613,5 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
  "liki [və ya Şafii] məzhəbini təqlid edincə, dəstəmazı və namazları səhih olar. Diş qapağı və dolğu dişi olmayanlara da imam ola bilər.Şafii məzhəbini təqlid edənin imam arxasında Fatihə "
  "surəsini oxuması, özünün və ya başqasının səvətəyninə, yəni iki dəstəmaz pozma üzvlərinə əlin ovucunun (içi) ilə toxunarsa və nikah ilə alması haram olan 18 qadından başqa qadının dərisinə dərisi dəyərsə dəstəmaz alması, dəstəmaza niyyət etməsi və az nəcasətdən də çəkinməsi lazımdır. Qurani-Kərimi tutacağı zaman da Şafii məzhəbinə görə dəstəmazlı olmalıdır. Hənəfi məzhəbində olan bir yolçunun Şafii məzhəbini təqlid edə"
  "rək, zöhr ilə əsr, şam ilə işa namazlarını cəm edərək birlikdə qıla bilməsi üçün Şafii məzhəbinə görə dəstəmazlı olması lazımdır.";
+
+ var compass = "Cihazınızı kalibrləmək üçün onu sürətlə və rəqəmdə göstərildiyi kimi ən azı 3 dəfə hərəkət etdirin. Bu hərəkəti şaquli, üfüqi və diaqonal şəkildə edin. Kompasdan istifadə edərkən kalibrləməni istənilən nöqtədə edə bilərsiniz";

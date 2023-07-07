@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,6 +11,7 @@ import 'package:html/parser.dart' as parser;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../Constants.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 
 class DiniReader extends StatefulWidget {
@@ -250,40 +252,27 @@ class _DiniReaderState extends State<DiniReader> {
     final document = parser.parse(body);
     var res = document.getElementsByClassName("tabbable").forEach
       ((element)async {
-      metin= element.children[1].text.toString();
+      metin= element.children[1].outerHtml;
       setState(() {
         metin10 = metin;
       });
-
-
-
-
-
     });
     var res1 = document.getElementsByClassName("blog-info").forEach
       ((element)async {
       bashliq = element.children[0].text.toString();
-
-
       setState(() {
-
         bashliq10 = bashliq;
-
-
       });
-
-      print("bashliq : ${bashliq.toString()}");
-
-
-
-
     });
 
   }
 
-
+  late List headerList;
+  late List textList;
   @override
   void initState() {
+    headerList = box.read("headerList")??[];
+    textList = box.read("textList")??[];
     _box =  box.read("arxaFon") ?? "white";
     _fontSize = box.read("font") ?? 15;
 
@@ -310,6 +299,46 @@ class _DiniReaderState extends State<DiniReader> {
   Widget build(BuildContext context) {
 
     return  Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: appBarColor.shade200,
+        child: Icon( headerList.contains(bashliq10) ? Icons.favorite : Icons.favorite_border),
+        onPressed: () {
+        setState(() {
+          if(!headerList.contains(bashliq10)){
+            headerList.add(bashliq10);
+            textList.add(metin10);
+            box.write("headerList", headerList);
+            box.write("textList", textList);
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    duration: Duration(seconds: 1),
+                    showCloseIcon: true,
+                    content: Text("Əlavə olundu", style: GoogleFonts.poppins(color: Colors.black),),
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.red.shade100,
+                    shape: RoundedRectangleBorder(),
+                  ));
+          }else{
+            setState(() {
+              headerList.remove(bashliq10);
+              textList.remove(metin10);
+              box.write("headerList", headerList);
+              box.write("textList", textList);
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    duration: Duration(seconds: 1),
+                    showCloseIcon: true,
+                    content: Text("Silindi", style: GoogleFonts.poppins(color: Colors.black),),
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.red.shade100,
+                    shape: RoundedRectangleBorder(),
+                  ));
+            });
+          }
+        });
+
+        },
+      ),
       key: _scaffoldKey,
       extendBodyBehindAppBar: true,
       backgroundColor: _bacgroundColor,
@@ -324,13 +353,9 @@ class _DiniReaderState extends State<DiniReader> {
                 icon: const Icon(Icons.settings),
                 color: Colors.white,
                 onPressed: () {
-               _createBottomSheet();
-
-                     }
-
-
-
-              ),],
+               _createBottomSheet();}
+              ),
+              ],
 
               elevation: 0,
             ),
@@ -338,10 +363,8 @@ class _DiniReaderState extends State<DiniReader> {
       metin10 != null ? Scrollbar(
         child: ListView(
           children: <Widget>[
-
-
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -353,15 +376,21 @@ class _DiniReaderState extends State<DiniReader> {
                       effects: [
                         FadeEffect(duration: Duration(milliseconds: 400))
                       ],
-                      child: Text(
-                        bashliq10.toString(), textAlign: TextAlign.center, style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 25),),
+                      child: Text(bashliq10.toString(), textAlign: TextAlign.center, style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 25),),
                     ),
                   ),
 
                       AnimatedDefaultTextStyle(
-                    style: GoogleFonts.poppins(color: Colors.black, fontSize: _fontSize),
+                    style: GoogleFonts.arimaMadurai(color: Colors.black, fontSize: _fontSize),
                   duration:Duration(milliseconds: 400),
-                  child: Text('${metin10.toString()}' , textAlign: TextAlign.justify,  ),),
+                  child: Html(data: metin10 ,
+                    style: {
+                      "span": Style(
+                        fontSize: FontSize(_fontSize),
+                      ),
+
+
+                    },  ),),
                 ],
               ),
             ),

@@ -55,9 +55,11 @@ Future<void> getTextData() async {
   var resHikmet = document.getElementsByClassName("top-block2").forEach((element) {
     var hikmetliSoz;
     setState(() {
-      hikmetliSoz = element.children[0].children[2].text.toString();
+      hikmetliSoz = element.children[0].children[2].outerHtml;
     });
     box.write("hikmetliSoz", hikmetliSoz);
+    box.write("hikmetliSozshare", element.children[0].children[2].text.toString());
+
   });
 
 
@@ -69,10 +71,12 @@ Future<void> getTextData() async {
       bashliq = element.children[1].children[0].children[2].children[0]
           .children[0].children[0].children[0].text
           .toString();
-      metin = element.children[1].children[0].children[5].text.toString();
+      metin = element.children[1].children[0].children[5].outerHtml;
     });
     box.write("bashliq", bashliq);
     box.write("metin", metin);
+    box.write("metinshare", element.children[1].children[0].children[5].text.toString());
+
   });
 
 }
@@ -86,13 +90,18 @@ Future<void>getMovzuPage()async{
   final document = parser.parse(body);
   var res = document.getElementsByClassName("blog-info").forEach((element)async {
 
-    await  box.write("_metin3",element.children[2].children[1].text.toString() );
+    await  box.write("_metin3",element.children[2].children[1].outerHtml );
     await box.write("_bashliq3", element.children[0].text.toString());
+    await  box.write("_metin3share",element.children[2].children[1].text.toString() );
     setState(() {
       _bashliq2 = box.read("_bashliq3");
       _metin2 = box.read("_metin3");
     });
   });
+}
+Future<void>getGets()async{
+ await getMovzuDialog();
+  getMovzuPage();
 }
 Future<void> getMovzuDialog() async {
   var _url = Uri.parse("https://www.gozelislam.com/");
@@ -104,10 +113,11 @@ Future<void> getMovzuDialog() async {
       _bashliq2 =
           element.children[0].children[0].children[0].children[0].children[0]
               .text.toString();
-      _metin2 = element.children[0].children[0].children[1].text.toString();
+      _metin2 = element.children[0].children[0].children[1].outerHtml;
     });
     box.write("_metin2", _metin2);
     box.write("_bashliq2", _bashliq2);
+    box.write("_metin2share", element.children[0].children[0].children[1].text.toString());
     box.write("_link2",
         element.children[0].children[0].children[0].children[0]
             .attributes['href'].toString());
@@ -120,8 +130,7 @@ Future<void> getMovzuDialog() async {
 void initState() {
 super.initState();
 getTextData();
-getMovzuPage();
-getMovzuDialog();
+getGets();
 scaleController = AnimationController(
 vsync: this,
 duration: Duration(milliseconds: 600),
@@ -200,27 +209,7 @@ color: appBarColor,
 borderRadius: BorderRadius.circular(20),
 ),
 child: Center(
-child: Container(
-width: 100,
-height: 100,
-decoration: BoxDecoration(
-color: appBarColor.shade100, shape: BoxShape.circle),
-child: Container(
-  decoration: BoxDecoration(
-    shape: BoxShape.circle,
-    color: appBarColor.shade100,
-  ),
-),
-),
-),
-),
-),
-),
-],
-),
-);
-}
-}
+child: Image.asset("assets/logi.png"),),),),),],),);}}
 
 class ThisIsFadeRoute extends PageRouteBuilder {
 final Widget page;

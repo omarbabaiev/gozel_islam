@@ -119,7 +119,7 @@ class _EcardsScreenState extends State<EcardsScreen> with TickerProviderStateMix
                                         child: Hero(
                                             tag: "hero${index}",
                                             child: FadeInImage(
-                                        placeholder: AssetImage("assets/open-book.png", ),
+                                        placeholder: AssetImage("assets/logi.png", ),
                                         image: NetworkImage("https://www.gozelislam.com${snapshot.data[index]}"),
                                         imageErrorBuilder: (ctx, exception, stackTrace) {
                                         return Container(); //THE WIDGET YOU WANT TO SHOW IF URL NOT RETURN IMAGE

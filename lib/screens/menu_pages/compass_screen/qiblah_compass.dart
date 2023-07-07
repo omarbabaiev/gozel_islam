@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:math' show pi;
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
-import '../../../Constants.dart';
+import 'package:gozel_islam/constants.dart';
 import 'loading_indicator.dart';
 import 'location_error_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,9 +21,19 @@ class _QiblahCompassState extends State<QiblahCompass> {
 
   get stream => _locationStreamController.stream;
 
+  var visible = true;
+
+  Future <void> _calib ()async{
+    await Future.delayed(Duration(seconds: 7)).then((value){
+      setState(() {
+        visible = false;
+      });
+    });
+  }
   @override
   void initState() {
     _checkLocationStatus();
+    _calib();
     super.initState();
   }
 
@@ -38,7 +49,7 @@ class _QiblahCompassState extends State<QiblahCompass> {
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
-        title: Text("Qiblə", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),),
+        title: Text("Qiblə kompası", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold),),
 
       ),
       body: Container(
@@ -56,7 +67,28 @@ class _QiblahCompassState extends State<QiblahCompass> {
               switch (snapshot.data!.status) {
                 case LocationPermission.always:
                 case LocationPermission.whileInUse:
-                  return Center(child: QiblahCompassWidget());
+                  return Center(child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      QiblahCompassWidget(),
+                      Visibility(
+                        visible: visible,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: AnimatedContainer(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                                child: Image.asset("assets/calibr.webp")),
+                            height: 400,
+                            width: 350,
+                            decoration: BoxDecoration(
+                              color: Colors.white
+                            ), duration: Duration(seconds: 1),
+                          ),
+                        ),
+                      )
+                    ],
+                  ));
 
                 case LocationPermission.denied:
                   return LocationErrorWidget(

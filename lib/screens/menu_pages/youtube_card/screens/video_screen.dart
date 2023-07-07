@@ -9,8 +9,9 @@ import '../models/video_model.dart';
 class VideoScreen extends StatefulWidget {
 
   final Video id;
+  final String hero;
 
-  VideoScreen({required this.id, });
+  VideoScreen({required this.id, required this.hero, });
 
   @override
   _VideoScreenState createState() => _VideoScreenState();
@@ -49,17 +50,20 @@ class _VideoScreenState extends State<VideoScreen> {
 
 
       body: Center(
-        child: YoutubePlayer(
-          bottomActions: [
-            CurrentPosition(),
-            ProgressBar(isExpanded: true),
-            RemainingDuration()
-          ],
-          controller: _controller,
-          showVideoProgressIndicator: true,
-          onReady: () {
-            print('Player is ready.');
-          },
+        child: Hero(
+          tag: widget.hero,
+          child: YoutubePlayer(
+            bottomActions: [
+              CurrentPosition(),
+              ProgressBar(isExpanded: true),
+              RemainingDuration()
+            ],
+            controller: _controller,
+            showVideoProgressIndicator: true,
+            onReady: () {
+              print('Player is ready.');
+            },
+          ),
         ),
       ),
     );

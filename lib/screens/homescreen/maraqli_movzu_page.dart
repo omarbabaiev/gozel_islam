@@ -1,27 +1,29 @@
-
 import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:gozel_islam/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../../../Constants.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 
+class MaraqliMovzuReader extends StatefulWidget {
+  String bashliq;
+  String metin;
 
-
-class Themes extends StatefulWidget {
   @override
-  State<Themes> createState() => _ThemesState();
+  State<MaraqliMovzuReader> createState() => _MaraqliMovzuReaderState();
+
+  MaraqliMovzuReader(this.bashliq, this.metin);
 }
 
-class _ThemesState extends State<Themes> {
+class _MaraqliMovzuReaderState extends State<MaraqliMovzuReader> {
   late PersistentBottomSheetController _controller; // <------ Instance variable
   final _scaffoldKey = GlobalKey<ScaffoldState>(); // <---- Another instance variable
   void _createBottomSheet() async{
@@ -201,84 +203,20 @@ class _ThemesState extends State<Themes> {
 
     );
   }
-  var _bashliq2;
-  var _metin2;
-  Future<void> getMovzuDialog() async {
-    var _url = Uri.parse("https://www.gozelislam.com/");
-    var response = await http.get(_url);
-    final body = response.body;
-    final document = parser.parse(body);
-    var res = document.getElementsByClassName("costom4").forEach((element) {
-      setState(() {
-        _bashliq2 =
-            element.children[0].children[0].children[0].children[0].children[0]
-                .text.toString();
-        _metin2 = element.children[0].children[0].children[1].outerHtml;
-      });
-      box.write("_metin2", _metin2);
-      box.write("_bashliq2", _bashliq2);
-      box.write("_link2",
-          element.children[0].children[0].children[0].children[0]
-              .attributes['href'].toString());
-    });
-    print(box.read("_link2"));
-  }
+
+
   double _fontSize = 16;
   var _bacgroundColor = Colors.white;
   var _box;
   GetStorage box = GetStorage();
-  void _increaseFontSize(){
-    setState((){
-      if(_fontSize < 51)
-        _fontSize++;
-    });
-  }
-  void _removwFontSize(){
-    setState((){
-      if(_fontSize > 10)
-        _fontSize--;
-    });
-  }
-  var bashliq;
-  var metin ;
-
-
-  var bashliq10;
-  var metin10;
-
-  var _url = Uri.parse("https://www.gozelislam.com/");
-
-  bool _show = true;
-  Future<void>getMovzuPage()async{
-    setState(() {
-      _show = false;
-    });
-    var _url = Uri.parse(box.read("_link2"));
-    var response = await http.get(_url);
-    final body = response.body;
-    final document = parser.parse(body);
-    var res = document.getElementsByClassName("blog-info").forEach((element)async {
-
-      await  box.write("_metin3",element.children[2].children[1].outerHtml );
-      await box.write("_bashliq3", element.children[0].text.toString());
-      setState(() {
-        bashliq10 = box.read("_bashliq3");
-        metin10 = box.read("_metin3");
-        _show = true;
-      });
-    });
-  }
   void _launchUrl(String patha) async {
     if (!await launch(Uri.parse(patha).toString(), forceSafariVC: true, forceWebView: false )) throw 'Could not launch $patha';
   }
-  void zor (){
-    setState((){
 
-    });
-  }
-  var _link2;
+
   @override
   void initState() {
+
     _box =  box.read("arxaFon") ?? "white";
     _fontSize = box.read("font") ?? 15;
 
@@ -294,117 +232,85 @@ class _ThemesState extends State<Themes> {
 
     }
 
-
-    bashliq10 = box.read("_bashliq3")?? "Dişdə dolğu və diş qapağının olması";
-    metin10 = box.read("_metin3") ?? maraqliMetin;
-    _link2 = box.read("_link2");
-
     // TODO: implement initState
     super.initState();
   }
 
 
+
   @override
   Widget build(BuildContext context) {
+
     return  Scaffold(
       key: _scaffoldKey,
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          getMovzuDialog();
-          getMovzuPage();
+      extendBodyBehindAppBar: true,
+      backgroundColor: _bacgroundColor,
+      appBar: AppBar(
+        scrolledUnderElevation: 3,
+        iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
+        backgroundColor: appBarColor,
+        title: Text("Günün mövzusu", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.settings),
+              color: Colors.white,
+              onPressed: () {
+                _createBottomSheet();
+              }
+          ),],
 
-        }, child: Icon(Icons.refresh),
-
-        ),
-        backgroundColor: _bacgroundColor,
-        appBar: AppBar(
-          scrolledUnderElevation: 3,
-          iconTheme: IconThemeData(color: Colors.white),
-          centerTitle: true,
-          backgroundColor: appBarColor,
-          title: Text("Maraqlı mövzular", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
-          actions: [
-            IconButton(
-                icon: const Icon(Icons.settings),
-                color: Colors.white,
-                onPressed: () {
-                  _createBottomSheet();
-
-                }
-
-            ),],
-
-          elevation: 0,
-        ),
-
-        body:
-        _show ?
-        Scrollbar(
-          child: RefreshIndicator(
-            onRefresh: ()async{
-              await getMovzuDialog();
-              getMovzuPage();
-            },
-            child: ListView(
-              children: <Widget>[
+        elevation: 0,
+      ),
+      body: Scrollbar(
+        child: ListView(
+          children: <Widget>[
 
 
-                Container(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Animate(
-                            effects: [
-                              FadeEffect(duration: Duration(milliseconds: 200))
-                            ],
-                            child: Animate(
-                              effects: [
-                                FadeEffect(duration: Duration(milliseconds: 400))
-                              ],
-                              child: Text(
-                                bashliq10.toString(), textAlign: TextAlign.center, style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 25),),
-                            ),
-                          ),
-                          AnimatedDefaultTextStyle(
-                            style: GoogleFonts.poppins(color: Colors.black, fontSize: _fontSize),
-                            duration:Duration(milliseconds: 400),
-                            child: Html(data: metin10,  style: {
-                              "span": Style(
-                                  fontSize: FontSize(_fontSize),
-                                  fontFamily: GoogleFonts.poppins().fontFamily
-                              ),
-                              "p": Style(
-                                  fontSize: FontSize(_fontSize),
-                                  fontFamily: GoogleFonts.poppins().fontFamily
-                              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Animate(
+                    effects: [
+                      FadeEffect(duration: Duration(milliseconds: 200))
+                    ],
+                    child: Animate(
+                      effects: [
+                        FadeEffect(duration: Duration(milliseconds: 400))
+                      ],
+                      child: Text(
+                        widget.bashliq, textAlign: TextAlign.center, style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 25),),
+                    ),
+                  ),
+
+                  AnimatedDefaultTextStyle(
+                    style: GoogleFonts.arimaMadurai(color: Colors.black, fontSize: _fontSize),
+                    duration:Duration(milliseconds: 400),
+                    child: Html(data: widget.metin ,
+                      style: {
+                        "span": Style(
+                          fontSize: FontSize(_fontSize),
+                        ),
 
 
-                            },)
-                            // Text('${metin10.toString()}' , textAlign: TextAlign.justify,  ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: TextButton(onPressed: () {
-                              _launchUrl(_link2.toString());
-                            },
-                                child: Center(child: Text('Saytda bax' ,style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.blue ),))),
-                          )
-                        ],
-                      ),
-                    )),
-
-
-
-                //3
-
-              ],
+                      },  ),),
+                ],
+              ),
             ),
-          ),
-        ) : Center(child: CircularProgressIndicator(),)
-    );
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: TextButton(onPressed: () {
+                _launchUrl("https://www.gozelislam.com/gunun-sohbeti.html");
+              },
+                  child: Center(child: Text('Saytda bax' ,style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.blue ),))),
+            )
 
 
+            //3
 
-  }
-}
+          ],
+        ),
+      ),
+    );}}

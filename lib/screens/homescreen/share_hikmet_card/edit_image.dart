@@ -61,7 +61,7 @@ class _EditImageState extends State<EditImage> {
                 "Title",
                 "${widget.text.substring(0, 2)}.jpg",
                 "image/jpeg",
-                text: "www.gozelislam.com");
+                text: "Dini Mövzular, Söhbətlər və Sual-Cavab www.gozelislam.com\n${textShareText}");
 
             setState(() {
               _isLoading = false;
@@ -117,7 +117,7 @@ class _EditImageState extends State<EditImage> {
                                   padding: EdgeInsets.all(8) ,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(15),
-                                      child: Image.asset("assets/logi.jpg", height: 60,))))),
+                                      child: Image.asset("assets/logi.png", height: 60,))))),
                       Align(
                           alignment: Alignment.bottomLeft,
                           child: Opacity(opacity: 1,

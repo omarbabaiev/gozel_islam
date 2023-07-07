@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:jiffy/jiffy.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../../Constants.dart';
 
 class SendEmail extends StatefulWidget {
@@ -15,6 +15,9 @@ class SendEmail extends StatefulWidget {
 }
 
 class _SendEmailState extends State<SendEmail> {
+
+
+
   GetStorage box = GetStorage();
   List<String>? attachment;
   var isTrue = false;
@@ -43,49 +46,6 @@ class _SendEmailState extends State<SendEmail> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 
-  Future sendEmail(
-      {
-        required String name,
-        required String email,
-        required String subject,
-        required String message,
-        required String number
-      }
-      )async{
-    setState(() {
-      isTrue = true;
-
-    });
-    final serviceId = 'service_ffloc2x';
-    final templateId = 'template_byawngf';
-    final userId = 'Cz3d9Z4CSm0dv4RhJ';
-    final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
-    final response = await http.post(url, headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'service_id': serviceId, 'template_id': templateId, 'user_id': userId,
-        'template_params': {'user_name': name, 'user_email': email, 'user_subject': subject, 'user_message': message, 'user_number': number
-        }
-      }), );
-    setState(() {
-      isTrue = false;
-    });
-    if(response.body == "OK"){
-      setState(() {
-        _bodyController.text = "";
-        _emailController.text = "";
-        _subjectController.text = "";
-        _nameController.text = "";
-        _numberController.text = "";
-        box.write("${Jiffy.now().dateTime.month}" + "000" + "${Jiffy.now().dateTime.day}", true);
-
-      });
-      Get.snackbar("Namaz Vaxtı", "Sualınız uğurla göndərildi", colorText: Colors.white);
-    }else{
-      Get.snackbar("Namaz Vaxtı", "Xəta baş verdi", colorText: Colors.red);
-
-    }
-
-  }
-
   @override
   Widget build(BuildContext context) {
 
@@ -104,23 +64,20 @@ class _SendEmailState extends State<SendEmail> {
 
           IconButton(
             onPressed:()async{
-              if(isSended == false){
-                if(_emailController.text.isEmail){
-                  if(_emailController.text != "" && _numberController.text != ""  ){
-                    await sendEmail(name: _nameController.text , subject: _subjectController.text, email: _emailController.text, message: _bodyController.text, number: _numberController.text);
-                  } else{
-                    Get.snackbar("Namaz Vaxtı", "E-mail və nömrəni daxil edin", colorText: Colors.white);
-                  }
-                }else{
-                  Get.snackbar("Namaz Vaxtı", "E-mail-i düzgün daxil edin", colorText: Colors.white);
-                }
-              }else{
-                Get.snackbar("Namaz Vaxtı", "Bir gün ərzində yalnız bir sual göndərmək haqqınız var", colorText: Colors.white);
-              }
+         launch("mailto:gozelislam@hotmail.com?body="
+             """Mən adım ${_nameController.text},
+
+             Mənim sualımın cavabını bu ${_emailController.text} ünvanıma və ya ${_numberController.text} whatsapp nömrəmə göndərə bilərsiniz,
+
+             ${_subjectController.text}
+
+             ${_bodyController.text}""");
+
+    }
 
 
 
-            } ,
+             ,
             icon: Icon(Icons.send),
           )
         ],
@@ -145,7 +102,7 @@ class _SendEmailState extends State<SendEmail> {
                           hintText: "Adınız",
                           fillColor: Colors.white,
                           filled: true,
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
 
                         ),
                       ),
@@ -160,7 +117,7 @@ class _SendEmailState extends State<SendEmail> {
                           fillColor: Colors.white,
                           filled: true,
                           errorText: "* Bu xananı doldurmaq mütləqdir",
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
 
                         ),
                       ),
@@ -176,7 +133,7 @@ class _SendEmailState extends State<SendEmail> {
                           fillColor: Colors.white,
                           filled: true,
                           errorText: "* Bu xananı doldurmaq mütləqdir",
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
 
                         ),
                       ),
@@ -190,7 +147,7 @@ class _SendEmailState extends State<SendEmail> {
                           fillColor: Colors.white,
                           hintText: "Mövzu adı",
                           filled: true,
-                          border: OutlineInputBorder(),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                         ),
                       ),
                     ),
@@ -206,9 +163,21 @@ class _SendEmailState extends State<SendEmail> {
                             fillColor: Colors.white,
                             filled: true,
                             // hintStyle: TextStyle(color: Constants.primaryColor),
-                            border: OutlineInputBorder()),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
                       ),
                     ),
+                    OutlinedButton(
+    onPressed:()async{
+    launch("mailto:gozelislam@hotmail.com?body="
+    """Mən adım ${_nameController.text},
+
+             Mənim sualımın cavabını bu ${_emailController.text} ünvanıma və ya ${_numberController.text} whatsapp nömrəmə göndərə bilərsiniz,
+
+             ${_subjectController.text}
+
+             ${_bodyController.text}""");
+
+    }, child: Text("        GÖNDƏR        ")),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text("* Dini sual soruşarkən sizdən aşağıdakı qaydalara riayət etməyiniz xahiş olunur:\n \n"

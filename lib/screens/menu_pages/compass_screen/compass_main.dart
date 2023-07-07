@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:gozel_islam/screens/menu_pages/compass_screen/qiblah_compass.dart';
 import 'loading_indicator.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 
 

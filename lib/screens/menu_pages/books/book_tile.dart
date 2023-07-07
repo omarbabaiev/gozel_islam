@@ -5,7 +5,7 @@ import 'book_details_screen.dart';
 
 class BookTile extends StatelessWidget {
 
-  BookTile(this.image, this.orederLink, this.linkDownload, this.bookName, this.author, this.description, this.hero);
+  BookTile(this.image, this.orederLink, this.linkDownload, this.bookName, this.author, this.description, this.hero, this.price);
   String image;
   String orederLink;
   String linkDownload;
@@ -13,6 +13,8 @@ class BookTile extends StatelessWidget {
   String author;
   String description;
   String hero;
+  String price;
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class BookTile extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: InkWell(
         onTap: (){
-          Navigator.of(context).push(CupertinoPageRoute(builder: (context)=> BookDetailsScreen(image, orederLink, linkDownload, bookName, author, description, hero )));
+          Navigator.of(context).push(CupertinoPageRoute(builder: (context)=> BookDetailsScreen(image, orederLink, linkDownload, bookName, author, description, hero , price)));
         },
         child: Container(
           decoration: BoxDecoration(
@@ -35,7 +37,7 @@ class BookTile extends StatelessWidget {
                 tag: hero,
                 child: FadeInImage(
                     height: 150,
-                    placeholder: AssetImage("assets/open-book.png"),
+                    placeholder: AssetImage("assets/logi.png"),
                     image: NetworkImage(image, )
                 ),
               ),

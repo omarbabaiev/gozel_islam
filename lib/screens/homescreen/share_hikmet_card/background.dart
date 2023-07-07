@@ -25,7 +25,7 @@ class _BackgroundScreenState extends State<BackgroundScreen> {
 var _api = "26288319-44b0e3d8845c3bd82f251f7a9&q";
 
 Future<ImageModel>_fetchData()async{
-  var response = await http.get(Uri.parse("https://pixabay.com/api/?key=${_api}=night+background&image_type=photo&orientation=horizontal&colors=blue&per_page=200"));
+  var response = await http.get(Uri.parse("https://pixabay.com/api/?key=${_api}=nature+background&image_type=photo&orientation=horizontal&colors=green&per_page=200"));
   var data = imageModelFromJson(response.body);
   return data;
 }

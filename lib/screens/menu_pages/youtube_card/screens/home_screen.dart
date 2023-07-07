@@ -13,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 
+
 class YouTubeCard extends StatefulWidget {
   @override
   _YouTubeCardState createState() => _YouTubeCardState();
@@ -116,78 +117,81 @@ class _YouTubeCardState extends State<YouTubeCard> {
           ),
           Divider(),
           SizedBox(height: 10,),
-          Text("Əhli-sünnət alimlərinin qiymətli əsərlərini qaynaq alaraq "
-              "əhli-sünnət etiqadına uyğun olaraq hazırlanmışdır. Kanalımızdakı məlumatlar bütün insanların "
-              "istifadəsi üçün hazırlanmışdır. Əslinə(Orijinallığına) sadiq qalmaq şərtilə, izin almadan hər kəs istədiyi kimi "
-              "istifadə edə bilər.", style: GoogleFonts.alata(fontSize: 18), textAlign: TextAlign.justify,)
+          Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(color: appBarColor.shade100),
+              borderRadius: BorderRadius.circular(20)
+            ),
+            child: Text("Əhli-sünnət alimlərinin qiymətli əsərlərini qaynaq alaraq "
+                "əhli-sünnət etiqadına uyğun olaraq hazırlanmışdır. Kanalımızdakı məlumatlar bütün insanların "
+                "istifadəsi üçün hazırlanmışdır. Əslinə sadiq qalmaq şərtilə, icazə almadan hər kəs istədiyi kimi "
+                "istifadə edə bilər.", style: GoogleFonts.alata(fontSize: 16), textAlign: TextAlign.start,),
+          )
         ],
       ),
     );
   }
 
   _buildVideo(Video video, int index) {
-    return GestureDetector(
-      onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) =>VideoScreen(id: video, )),),
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Stack(
         children: [
-          OpenContainer(
-            closedBuilder: (_, openContainer) {
-              return   Container(
-                margin: EdgeInsets.symmetric(horizontal: 2.0, vertical: 5.0),
-                padding: EdgeInsets.all(5.0),
-                height: 100.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.red.shade100,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      offset: Offset(0, 1),
-                      blurRadius: 6.0,
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 2,
-                      child: Stack(
-                        children: [
-                          ClipRRect(child:
-                          Hero(
-                            tag: index,
-                            child: FadeInImage(
-                              placeholder: AssetImage("assets/open-book.png"),
-                              image: NetworkImage(video.thumbnailUrl),),
-                          ),
+         InkWell(
+           onTap: (){Navigator.push(context, CupertinoPageRoute(builder: (context) =>VideoScreen(id: video, hero: index.toString(), )),);},
+           child: Container(
+                  margin: EdgeInsets.symmetric( ),
+                  height: 88.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.red.shade100,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        offset: Offset(0, 1),
+                        blurRadius: 6.0,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                        flex: 6,
+                        child: Stack(
+                          children: [
+                            ClipRRect(child: Hero(
+                              tag: index.toString(),
+                              child: FadeInImage(
+                                placeholder: AssetImage("assets/logi.jpg"),
+                                image: NetworkImage(video.thumbnailUrl),),
+                            ),
 
-                            borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: VerticalDivider(thickness: 2,),
+                      )),
+                      Expanded(
+                        flex: 7,
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(
+                              video.title,
+                              style: GoogleFonts.alata(fontSize: 14, fontWeight: FontWeight.w500)
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                          video.title,
-                          style: GoogleFonts.andika(fontSize: 18, fontWeight: FontWeight.w500)
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-            openColor: Colors.white,
-            closedElevation: 0,
-            closedShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+                    ],
+                  ),
+
             ),
-            closedColor: Colors.white,
-            openBuilder: (_, closeContainer) {
-              return VideoScreen(id: video, );
-            },
-          ),
+         ),
 
 
         ],
