@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gozel_islam/screens/homescreen/KufrCard.dart';
 import 'package:gozel_islam/screens/homescreen/book_card.dart';
 import 'package:gozel_islam/screens/homescreen/prayer_time_table/prayer_time_table_screen.dart';
+import 'package:gozel_islam/screens/menu_pages/ZikirMatik/ZikirMatik.dart';
+import 'package:gozel_islam/screens/menu_pages/ZikirMatik/ZikirlerPage.dart';
 import 'package:gozel_islam/screens/menu_pages/about_us/about_us.dart';
 import 'package:gozel_islam/screens/menu_pages/books/book_screen.dart';
 import 'package:gozel_islam/screens/menu_pages/compass_screen/compass_main.dart';
@@ -304,6 +306,12 @@ var metin3share;
               title: Text("Sonra oxunacaqlar", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
               onTap: (){
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>ZikirlerPage()));
+              },
+              leading: Image.asset("assets/tasbeh1.png"),
+              title: Text("Zikrlər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+            ListTile(
+              onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>PrayerTimeTable()));
               },
               leading: Icon(Icons.calendar_month),
@@ -412,9 +420,14 @@ var metin3share;
       ),
       appBar: AppBar(
         actions:
-        [IconButton( onPressed: () async{
+        [
+          InkWell( onTap: (){
+            Navigator.push(context, CupertinoPageRoute(builder: (context)=>ZikrPage()));
+          }, child: Image.asset("assets/tasbeh1.png", width: 30, ),),
+          IconButton( onPressed: () async{
             await Share.share("${"Dini Mövzular, Söhbətlər və Sual-Cavab\n${textShareText}"}");
     }, icon: Icon(Icons.share),),
+
         ],
         scrolledUnderElevation: 3,
         iconTheme: IconThemeData(color: Colors.white),

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:gozel_islam/screens/menu_pages/dini_bilgiler/all_topics.dart';
 import 'package:gozel_islam/screens/menu_pages/recent_list/recent_reader.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
@@ -35,6 +36,18 @@ class _RecentListPageState extends State<RecentListPage> {
   Widget build(BuildContext context) {
     var _w = MediaQuery.of(context).size.width;
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: appBarColor.shade200,
+        label: Row(
+          children: [
+            Icon(Icons.add, color: Colors.white,),
+            Text("ƏLAVƏ ET", style: TextStyle( color: Colors.white, fontWeight: FontWeight.bold),),
+          ],
+        ) ,
+        onPressed: () {
+          Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>DiniBilgilerPage()));
+        },
+      ),
       extendBodyBehindAppBar: true,
       appBar:AppBar(
         scrolledUnderElevation: 3,
@@ -50,11 +63,9 @@ class _RecentListPageState extends State<RecentListPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.info_outline, size: 40,),
+              Icon(Icons.info_outline, size: 40, color: appBarColor.shade200,),
               Text("Mövzu tapılmadı", maxLines: 1, overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.alatsi(fontSize: 30)),
-              SizedBox(height: 30,),
-              ElevatedButton(onPressed: (){}, child: Text("Əlavə et"))
+                style: GoogleFonts.alatsi(fontSize: 26)),
             ],
           ),
         )
@@ -62,7 +73,6 @@ class _RecentListPageState extends State<RecentListPage> {
             :  Scrollbar(
             child: ListView.separated(
               padding: EdgeInsets.symmetric(horizontal:_w / 30, vertical: 100),
-              physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               itemCount: listHeader.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(

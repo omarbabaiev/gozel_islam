@@ -301,7 +301,7 @@ class _DiniReaderState extends State<DiniReader> {
     return  Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: appBarColor.shade200,
-        child: Icon( headerList.contains(bashliq10) ? Icons.favorite : Icons.favorite_border),
+        child: Icon( headerList.contains(bashliq10) ? Icons.favorite : Icons.favorite_border, color: Colors.white,),
         onPressed: () {
         setState(() {
           if(!headerList.contains(bashliq10)){
@@ -313,9 +313,9 @@ class _DiniReaderState extends State<DiniReader> {
                   SnackBar(
                     duration: Duration(seconds: 1),
                     showCloseIcon: true,
-                    content: Text("Əlavə olundu", style: GoogleFonts.poppins(color: Colors.black),),
+                    content: Text("Sonra oxunacaqlar siyahısına əlavə olundu", style: GoogleFonts.poppins(color: Colors.black),),
                     behavior: SnackBarBehavior.floating,
-                    backgroundColor: Colors.red.shade100,
+                    backgroundColor: Colors.greenAccent,
                     shape: RoundedRectangleBorder(),
                   ));
           }else{
@@ -328,7 +328,7 @@ class _DiniReaderState extends State<DiniReader> {
                   SnackBar(
                     duration: Duration(seconds: 1),
                     showCloseIcon: true,
-                    content: Text("Silindi", style: GoogleFonts.poppins(color: Colors.black),),
+                    content: Text("Sonra oxunacaqlar siyahısından silindi", style: GoogleFonts.poppins(color: Colors.black),),
                     behavior: SnackBarBehavior.floating,
                     backgroundColor: Colors.red.shade100,
                     shape: RoundedRectangleBorder(),
