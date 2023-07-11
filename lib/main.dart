@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Gözəl İslam',
       theme: ThemeData(
+        appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.amber.shade100)),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),

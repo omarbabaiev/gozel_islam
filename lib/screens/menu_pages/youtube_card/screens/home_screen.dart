@@ -222,7 +222,6 @@ class _YouTubeCardState extends State<YouTubeCard> {
       appBar: AppBar(
         actions: [IconButton( onPressed: () {  }, icon: Icon(Icons.share),)],
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("Dini Videolar", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),

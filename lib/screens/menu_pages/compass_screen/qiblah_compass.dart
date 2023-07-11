@@ -46,7 +46,6 @@ class _QiblahCompassState extends State<QiblahCompass> {
         actions:
         [],
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("Qiblə kompası", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold),),

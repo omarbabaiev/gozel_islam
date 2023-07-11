@@ -318,7 +318,6 @@ class _ThemesState extends State<Themes> {
         backgroundColor: _bacgroundColor,
         appBar: AppBar(
           scrolledUnderElevation: 3,
-          iconTheme: IconThemeData(color: Colors.white),
           centerTitle: true,
           backgroundColor: appBarColor,
           title: Text("Maraqlı mövzular", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),

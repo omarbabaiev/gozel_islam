@@ -68,7 +68,6 @@ class _EditImageState extends State<EditImage> {
             });}, child: Text("Paylaş", style: GoogleFonts.poppins(fontSize: 20 , fontWeight: FontWeight.bold, color: Colors.white )))
         ],
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("Düzəliş et", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),

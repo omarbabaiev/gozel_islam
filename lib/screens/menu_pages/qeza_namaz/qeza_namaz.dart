@@ -80,7 +80,6 @@ class _QezaNamazState extends State<QezaNamaz> {
       appBar: AppBar(
 
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("Qəza hesablama", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),

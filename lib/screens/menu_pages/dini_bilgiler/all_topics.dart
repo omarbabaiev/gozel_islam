@@ -82,7 +82,6 @@ class _DiniBilgilerPageState extends State<DiniBilgilerPage> {
       extendBodyBehindAppBar: true,
       appBar:AppBar(
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("Dini Bilgilər", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),

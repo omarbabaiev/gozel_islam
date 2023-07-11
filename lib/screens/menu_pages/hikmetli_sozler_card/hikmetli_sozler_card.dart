@@ -89,7 +89,6 @@ class _HikmetliSozlerCardScreenState extends State<HikmetliSozlerCardScreen> wit
       resizeToAvoidBottomInset: false,
       appBar:AppBar(
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("Hikmətli Sözlər", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
@@ -199,7 +198,6 @@ class _HikmetliSozlerCardScreenState extends State<HikmetliSozlerCardScreen> wit
               )
             ],
             scrolledUnderElevation: 3,
-            iconTheme: IconThemeData(color: Colors.white),
             centerTitle: true,
             backgroundColor: appBarColor,
             title: Text("E-kart", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),

@@ -55,7 +55,7 @@ Widget headerContainers(BuildContext context){
                   ],),
                 width: 120,
                 decoration: BoxDecoration(
-                    color: appBarColor,
+                    color: Colors.lightBlue,
                     borderRadius: BorderRadius.circular(15)
                 ),
               ),
@@ -82,7 +82,7 @@ Widget headerContainers(BuildContext context){
                 ),
                 width: 120,
                 decoration: BoxDecoration(
-                    color: appBarColor.shade300,
+                    color: Colors.green,
                     borderRadius: BorderRadius.circular(15)
                 ),
               ),
@@ -110,7 +110,7 @@ Widget headerContainers(BuildContext context){
                 ),
                 width: 120,
                 decoration: BoxDecoration(
-                    color: appBarColor.shade300,
+                    color: Colors.indigo,
                     borderRadius: BorderRadius.circular(15)
                 ),
               ),
@@ -132,15 +132,12 @@ Widget headerContainers(BuildContext context){
                   children: [
                     Image.asset("assets/open-book.png", height:40,),
                     Text("Qüsl, Dəstəmaz, Heyz", style: GoogleFonts.alata(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
-
-
-
                   ],
 
                 ),
                 width: 120,
                 decoration: BoxDecoration(
-                    color: appBarColor.shade300,
+                    color: Colors.lightBlue,
                     borderRadius: BorderRadius.circular(15)
                 ),
               ),
@@ -165,7 +162,7 @@ Widget headerContainers(BuildContext context){
                   ],),
                 width: 120,
                 decoration: BoxDecoration(
-                    color: appBarColor.shade300,
+                    color: Colors.orange,
                     borderRadius: BorderRadius.circular(15)
                 ),
               ),
@@ -190,7 +187,7 @@ Widget headerContainers(BuildContext context){
                   ],),
                 width: 120,
                 decoration: BoxDecoration(
-                    color: appBarColor.shade300,
+                    color: Colors.deepPurpleAccent,
                     borderRadius: BorderRadius.circular(15)
                 ),
               ),
@@ -214,7 +211,7 @@ Widget headerContainers(BuildContext context){
                   ],),
                 width: 120,
                 decoration: BoxDecoration(
-                    color: appBarColor.shade300,
+                    color: Colors.deepOrange,
                     borderRadius: BorderRadius.circular(15)
                 ),
               ),
@@ -323,7 +320,8 @@ Padding buildHikmet(BuildContext context, String metin, String shareMetin) {
         children: [
           ListTile(
               isThreeLine: true,
-              title: Text("Hikmət əhli buyurdu ki,", style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, color: appBarColor, fontSize: 20),),
+              leading: Icon(Icons.format_quote_rounded, color: appBarColor,),
+              title: Text("Hikmət əhli buyurdu ki", style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, color: Colors.orange, fontSize: 25),),
               subtitle: Html(
                 data: metin,
                 style: {
@@ -407,15 +405,16 @@ Padding buildMaraqliMovzular(String bashliq, String metin, String url, String me
       child: Stack(
         children: [
           ListTile(
+              leading: Icon(Icons.format_quote_rounded, color: Colors.deepOrange,),
 
               isThreeLine: true,
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(bashliq, style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 20, color: appBarColor),),
+                  Expanded(child: Text(bashliq, style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 25, color:  Colors.orange,),)),
                 ],),
               subtitle: Padding(
-                padding: EdgeInsets.only(bottom: 100),
+                padding: EdgeInsets.only(bottom: 130),
                 child: Scrollbar(
                   child: SingleChildScrollView(
                     child: Html(
@@ -525,7 +524,7 @@ Padding buildOtherMovzu(BuildContext context, ) {
                     onTap: (){
                       Navigator.push(context, CupertinoPageRoute(builder: (context)=>YenilenenMovzular()));
                     },
-                    leading: Icon(Icons.topic_rounded),
+                    leading: Icon(Icons.topic_rounded, color: Colors.yellowAccent.shade400,),
                     title: Text("Ən son yenilənən mövzular", style: GoogleFonts.alata(  fontSize: 18),),
                   ),
                 ),
@@ -542,7 +541,7 @@ Padding buildOtherMovzu(BuildContext context, ) {
                     onTap: (){
                       Navigator.push(context, CupertinoPageRoute(builder: (context)=>ElaveMovzular()));
                     },
-                    leading: Icon(Icons.topic_rounded),
+                    leading: Icon(Icons.topic_rounded, color: Colors.yellowAccent.shade400,),
                     title: Text("Ən son əlavə olunan mövzular", style: GoogleFonts.alata(  fontSize: 18),),
                   ),
                 ),
@@ -558,7 +557,7 @@ Padding buildOtherMovzu(BuildContext context, ) {
                     onTap: (){
                       Navigator.push(context, CupertinoPageRoute(builder: (context)=>Themes()));
                     },
-                    leading: Icon(Icons.topic_rounded),
+                    leading: Icon(Icons.topic_rounded, color: Colors.yellowAccent.shade400,),
                     title: Text("Sizin üçün maraqlı mövzular", style: GoogleFonts.alata(  fontSize: 18)),
                   ),
                 ),
@@ -587,32 +586,37 @@ Padding buildMovzu(BuildContext context, String bashliq, String metin, String ma
     child: Stack(
       children: [
         ListTile(
+            leading: Icon(Icons.format_quote_rounded, color: Colors.deepOrange,),
             isThreeLine: true,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(bashliq, style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 20, color: appBarColor),),
+                Text(bashliq, style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 25, color:  Colors.orange,),),
               ],),
             subtitle: Padding(
               padding: EdgeInsets.only(bottom: 100),
-              child: Html(
-                data: metin,
-                style: {
-                  "span" : Style(
-                    fontSize: FontSize(16),
-                    fontFamily: GoogleFonts.poppins().fontFamily,
+              child: Scrollbar(
+                child: SingleChildScrollView(
+                  child: Html(
+                    data: metin,
+                    style: {
+                      "span" : Style(
+                        fontSize: FontSize(16),
+                        fontFamily: GoogleFonts.poppins().fontFamily,
 
+                      ),
+                      "p": Style(
+                        fontSize: FontSize(16),
+                        fontFamily: GoogleFonts.poppins().fontFamily,
+
+
+                      ),
+
+
+
+                    },
                   ),
-                  "p": Style(
-                    fontSize: FontSize(16),
-                    fontFamily: GoogleFonts.poppins().fontFamily,
-
-
-                  ),
-
-
-
-                },
+                ),
               ),
             )
           // Text(metin, maxLines: 10, overflow: TextOverflow.ellipsis ,textAlign: TextAlign.justify, style: GoogleFonts.poppins(fontSize: 18) ,)

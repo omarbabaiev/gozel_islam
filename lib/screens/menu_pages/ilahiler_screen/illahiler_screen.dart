@@ -11,7 +11,6 @@ class IlahilerScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("İlahilər", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),

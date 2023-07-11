@@ -35,7 +35,6 @@ class _DataTable1 extends State<PrayerTimeTable> {
       Scaffold(
         appBar:  AppBar(
           scrolledUnderElevation: 3,
-          iconTheme: IconThemeData(color: Colors.white),
           centerTitle: true,
           backgroundColor: appBarColor,
           title: Text("Namaz Təqvimi", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold,),),

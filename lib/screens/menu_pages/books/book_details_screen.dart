@@ -35,7 +35,6 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("Kitab haqqında məlumat", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
@@ -59,7 +58,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                       Hero(tag: widget.hero,
                       child: FadeInImage(
                           height: 150,
-                          placeholder: AssetImage("assets/open-book.png"),
+                          placeholder: AssetImage("assets/header.png"),
                           image: NetworkImage(widget.image, )
                       ),),
                       Column(

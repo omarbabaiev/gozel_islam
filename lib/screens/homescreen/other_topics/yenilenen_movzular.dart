@@ -87,7 +87,6 @@ class _YenilenenMovzularState extends State<YenilenenMovzular> {
       extendBodyBehindAppBar: true,
       appBar:AppBar(
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("Ən son yenilənən mövzular", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),

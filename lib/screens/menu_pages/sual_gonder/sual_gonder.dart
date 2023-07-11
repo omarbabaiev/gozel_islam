@@ -56,7 +56,6 @@ class _SendEmailState extends State<SendEmail> {
         leading: IconButton(onPressed: () {      Navigator.pop(context);
         }, icon: Icon(Icons.chevron_left, size: 30,),),
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text('Sual Göndər', style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),

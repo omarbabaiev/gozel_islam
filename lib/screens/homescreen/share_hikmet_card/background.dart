@@ -52,7 +52,6 @@ Future<ImageModel>_fetchData()async{
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("Arxa plan seç", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
@@ -94,7 +93,7 @@ Future<ImageModel>_fetchData()async{
                                              opacity: .2,
                                              child: ClipRRect(
                                                  borderRadius: BorderRadius.circular(15),
-                                                 child: Image.asset("assets/logi.jpg", height: 60,)),
+                                                 child: Image.asset("assets/header.png", height: 60,)),
                                            );
                                        },
                                          imageUrl: snapshot.data!.hits[index].previewUrl,),

@@ -173,21 +173,7 @@ super.dispose();
 Widget build(BuildContext context) {
 return Scaffold(
 
-body: Stack(
-children: [
-Row(
-mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-children: [
-Padding(
-padding: EdgeInsets.only(top: 80),
-child: Text(
-'www.gozelislam.com',
-style: GoogleFonts.alata(fontSize: 30, )
-),
-),
-],
-),
-Center(
+body: Center(
 child: AnimatedOpacity(
 curve: Curves.fastLinearToSlowEaseIn,
 duration: Duration(seconds: 6),
@@ -209,7 +195,7 @@ color: appBarColor,
 borderRadius: BorderRadius.circular(20),
 ),
 child: Center(
-child: Image.asset("assets/logi.png"),),),),),],),);}}
+child: Image.asset("assets/logi.png"),),),),),);}}
 
 class ThisIsFadeRoute extends PageRouteBuilder {
 final Widget page;

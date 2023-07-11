@@ -344,7 +344,6 @@ class _DiniReaderState extends State<DiniReader> {
       backgroundColor: _bacgroundColor,
       appBar: AppBar(
               scrolledUnderElevation: 3,
-              iconTheme: IconThemeData(color: Colors.white),
               centerTitle: true,
               backgroundColor: appBarColor,
               title: Text("Dini mövzular", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
@@ -387,6 +386,18 @@ class _DiniReaderState extends State<DiniReader> {
                     style: {
                       "span": Style(
                         fontSize: FontSize(_fontSize),
+                      ),
+                      "p": Style(
+                        fontSize: FontSize(16),
+                        fontFamily: GoogleFonts.poppins().fontFamily,
+                      ),
+                      "img": Style(
+                        fontSize: FontSize(16),
+                        fontFamily: GoogleFonts.poppins().fontFamily,
+                      ),
+                      "td": Style(
+                        fontSize: FontSize(16),
+                        fontFamily: GoogleFonts.poppins().fontFamily,
                       ),
 
 

@@ -41,7 +41,6 @@ class _VideoScreenState extends State<VideoScreen> {
       appBar: AppBar(
         actions: [IconButton( onPressed: () {  }, icon: Icon(Icons.share),)],
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("${widget.id.title}", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),

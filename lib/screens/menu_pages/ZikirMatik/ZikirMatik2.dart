@@ -273,8 +273,7 @@ Future<bool>geri()async{
       extendBodyBehindAppBar: true,
 
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        // leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+                       // leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
         // }, icon: Icon(Icons.chevron_left),),
         actions: [
           AnimatedRotation(

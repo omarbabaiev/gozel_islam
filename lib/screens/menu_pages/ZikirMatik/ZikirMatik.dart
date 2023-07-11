@@ -6,7 +6,9 @@ import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/services.dart'; // we need this for the vibrations
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+import '../../../Constants.dart';
 import 'Buttons.dart';
 import 'ZikirlerPage.dart';
 
@@ -77,69 +79,63 @@ class _ZikrPageState extends State<ZikrPage> {
 
 
     return Scaffold(
-      // backgroundColor: Constants.primaryColor,
+      backgroundColor: appBarColor,
 
       extendBodyBehindAppBar: true,
 
-      appBar: AppBar(leading: IconButton(onPressed: () {      Navigator.pop(context);
-      }, icon: Icon(Icons.chevron_left, size: 30,),),
-        actions: [
-
-          IconButton(onPressed: (){
-
-           Navigator.push(context, CupertinoPageRoute(builder: (context)=>ZikirlerPage()));
-          }, icon: Icon(Icons.list)),
-          AnimatedRotation(
-            turns: _turns.toDouble(),
-            duration: Duration(milliseconds: 100),
-            child: IconButton(
-
-
-              onPressed: (){
-                Get.defaultDialog(
-                    onConfirm: (){
-                      var timer =  Timer.periodic(Duration(milliseconds: 100), (timer) {
-                        setState(() {
-                          _turns++;
-                          if(_turns == 4 || _turns >4){
-                            _turns = 0;
-                            timer.cancel();
-                          }
-                        });
+      appBar:  AppBar(
+    iconTheme: IconThemeData(color: Colors.white),
+      // leading: IconButton(onPressed: () {      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return PageViewPage(); }));
+      // }, icon: Icon(Icons.chevron_left),),
+      actions: [
+        IconButton(onPressed: (){
+          Navigator.push(context, CupertinoPageRoute(builder: (context)=>ZikirlerPage()));
+        }, icon: Icon(Icons.list)),
+        AnimatedRotation(
+          turns: _turns.toDouble(),
+          duration: Duration(milliseconds: 100),
+          child: IconButton(
+            onPressed: (){
+              Get.defaultDialog(
+                  onConfirm: (){
+                    var timer =  Timer.periodic(Duration(milliseconds: 100), (timer) {
+                      setState(() {
+                        _turns++;
+                        if(_turns == 4 || _turns >4){
+                          _turns = 0;
+                          timer.cancel();
+                        }
                       });
-                      _restart();
-                      Navigator.of(context).pop();
-                    },
-                    middleText: "Sıfırlansın",
-                    confirmTextColor: Colors.white,
-                    title: "System",
-                    textConfirm: "Bəli",
-                    textCancel: "Xeyr"
+                    });
+                    _restart();
+                    Navigator.of(context).pop();
+                  },
+                  middleText: "Sıfırlansın",
+                  confirmTextColor: Colors.white,
+                  title: "System",
+                  textConfirm: "Bəli",
+                  textCancel: "Xeyr"
 
-                );
-              }
-              //_restart
-              ,
-              icon:  Icon(
-                Icons.restart_alt, color: Colors.white,
+              );
+            }
+            //_restart
+            ,
+            icon:  Icon(
+              Icons.restart_alt, color: Colors.white,
 
-              ),
             ),
           ),
+        ),
 
-          ],
 
-        centerTitle: true,
-        title: Text("Təsbih", textAlign: TextAlign.center ,style: TextStyle(
-          fontSize: 25,
-          fontFamily: "Oswald",
-          color: Colors.white,
+      ],
 
-        ),),
-        shadowColor: Colors.transparent,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+      centerTitle: true,
+      title: Text("Təsbih", textAlign: TextAlign.center , style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, )),
+
+      backgroundColor: appBarColor,
       ),
+
       body: Stack(
         children: [
 
@@ -160,7 +156,7 @@ class _ZikrPageState extends State<ZikrPage> {
                            child: Padding(
                              padding: const EdgeInsets.all(20.0),
                              child: AnimatedFlipCounter(
-                               textStyle: Theme.of(context).textTheme.headline1?.copyWith(color: Colors.white, fontFamily: "Oswald"),
+                               textStyle: GoogleFonts.aldrich(fontSize: 50, color: Colors.white),
                                duration: Duration(milliseconds: 300),
                                curve: Curves.decelerate,
                                value: _counter, /* pass in a number like 2014 */

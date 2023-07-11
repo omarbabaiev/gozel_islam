@@ -37,8 +37,8 @@ class BookTile extends StatelessWidget {
                 tag: hero,
                 child: FadeInImage(
                     height: 150,
-                    placeholder: AssetImage("assets/logi.png"),
-                    image: NetworkImage(image, )
+                    placeholder: AssetImage("assets/header.png"),
+                    image: AssetImage(image, )
                 ),
               ),
               SizedBox(height: 10,),

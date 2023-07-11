@@ -56,9 +56,7 @@ class _ZikirlerPageState extends State<ZikirlerPage> {
       extendBodyBehindAppBar: true,
 
         appBar: AppBar(
-          leading:     IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.chevron_left, size: 30,),),
           scrolledUnderElevation: 3,
-          iconTheme: IconThemeData(color: Colors.white),
           centerTitle: true,
           backgroundColor: appBarColor,
           title: Text("Zikrlər", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
@@ -79,8 +77,8 @@ class _ZikirlerPageState extends State<ZikirlerPage> {
                             percent: ((box.read("${index + 1}")?? 0)/ zikrTile[index].zikrSayisi),
                           ),
                         ),
-                        subtitle: Text("Bugün ${box.read("0${index+1}${c.difference2}")??0}  Ümumi ${box.read("00${index+1}")??0}" ),
-                        title: Text( '${zikrTile[index].name}', maxLines: 1, overflow: TextOverflow.ellipsis, ),
+                        subtitle: Text("Bugün ${box.read("0${index+1}${c.difference2}")??0}  Ümumi ${box.read("00${index+1}")??0}" , style: GoogleFonts.alata()),
+                        title: Text( '${zikrTile[index].name}', maxLines: 1, overflow: TextOverflow.ellipsis, style: GoogleFonts.poppins(fontWeight: FontWeight.w500) ),
                         onTap: (){
                           Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context)=>ZikrPage1(isim: zikrTile[index].name, siraSayi: zikrTile[index].siraSayi, zikirSayisi: zikrTile[index].zikrSayisi,)));
                         },

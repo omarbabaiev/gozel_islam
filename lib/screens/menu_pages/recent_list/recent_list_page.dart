@@ -51,7 +51,6 @@ class _RecentListPageState extends State<RecentListPage> {
       extendBodyBehindAppBar: true,
       appBar:AppBar(
         scrolledUnderElevation: 3,
-        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         backgroundColor: appBarColor,
         title: Text("Sonra oxunacaqlar", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
