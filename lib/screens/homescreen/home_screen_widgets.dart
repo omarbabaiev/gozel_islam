@@ -5,7 +5,10 @@ import 'package:gozel_islam/screens/homescreen/other_topics/en_son_elave.dart';
 import 'package:gozel_islam/screens/homescreen/other_topics/maraqli-movzu.dart';
 import 'package:gozel_islam/screens/homescreen/other_topics/yenilenen_movzular.dart';
 import 'package:gozel_islam/screens/homescreen/prayer_time_table/prayer_time_table_screen.dart';
+import 'package:gozel_islam/screens/menu_pages/books/book_screen.dart';
 import 'package:gozel_islam/screens/menu_pages/dini_bilgiler/gunun_movzusu.dart';
+import 'package:gozel_islam/screens/menu_pages/esmaul_husna/esma_husna.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +38,7 @@ Widget headerContainers(BuildContext context){
     child: SizedBox(
       height: 110,
       child: ListView(
-        padding: EdgeInsets.only(left: 10),
+        padding: EdgeInsets.only(left: 7),
         scrollDirection: Axis.horizontal,
         children: [
           Padding(
@@ -367,6 +370,7 @@ Padding buildHikmet(BuildContext context, String metin, String shareMetin) {
         ],
       ),
       decoration: BoxDecoration(
+        border: Border.all(width: 0.2, color: Colors.red),
           color: Theme.of(context).colorScheme.onInverseSurface,
           borderRadius: BorderRadius.circular(15)
       ), duration: Duration(seconds: 1),
@@ -376,6 +380,9 @@ Padding buildHikmet(BuildContext context, String metin, String shareMetin) {
 
 
 Padding buildSocial() {
+  void _launchUrl(String patha) async {
+    if (!await launch(Uri.parse(patha).toString(), forceSafariVC: true, forceWebView: false )) throw 'Could not launch $patha';
+  }
   return Padding(
     padding: EdgeInsets.all(10),
     child: Row(
@@ -383,13 +390,19 @@ Padding buildSocial() {
       children: [
         OutlinedButton(
             style: OutlinedButton.styleFrom(backgroundColor: Colors.indigo),
-            onPressed: (){}, child: Text("Facebook", style: TextStyle(color: Colors.white), )),
+            onPressed: (){
+              _launchUrl("https://www.facebook.com/gozelislam");
+            }, child: Text("Facebook", style: TextStyle(color: Colors.white), )),
         OutlinedButton(
             style: OutlinedButton.styleFrom(backgroundColor: Color(0xFFA81F38)),
-            onPressed: (){}, child: Text("Instagram", style: TextStyle(color: Colors.white))),
+            onPressed: (){
+              _launchUrl("https://www.instagram.com/gozelislam_kitabevi");
+            }, child: Text("Instagram", style: TextStyle(color: Colors.white))),
         OutlinedButton(
             style: OutlinedButton.styleFrom(backgroundColor: Colors.lightBlue),
-            onPressed: (){}, child: Text("Telegram", style: TextStyle(color: Colors.white))),
+            onPressed: (){
+              _launchUrl("https://t.me/gozelislam");
+            }, child: Text("Telegram", style: TextStyle(color: Colors.white))),
 
       ],
     ),
@@ -490,6 +503,7 @@ Padding buildMaraqliMovzular(String bashliq, String metin, String url, String me
         ],
       ),
       decoration: BoxDecoration(
+          border: Border.all(width: 0.2, color: Colors.red),
           color: Theme.of(context).colorScheme.onInverseSurface,
           borderRadius: BorderRadius.circular(15)
       ),
@@ -670,6 +684,7 @@ Padding buildMovzu(BuildContext context, String bashliq, String metin, String ma
       ],
     ),
     decoration: BoxDecoration(
+        border: Border.all(width: 0.2, color: Colors.red),
         color: Theme.of(context).colorScheme.onInverseSurface,
         borderRadius: BorderRadius.circular(15)
     ),
@@ -830,8 +845,16 @@ StatefulBuilder buildPrayerTimes(BuildContext context, var base, var extra, Stri
                                                         setState(() {
                                                           isLoading = false;
                                                         });
-                                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("İnternet bağlantısını yoxlayın")));
-                                                      }
+                                                        Navigator.pop(context);
+                                                        ScaffoldMessenger.of(context).showSnackBar(
+                                                            SnackBar(
+                                                              duration: Duration(seconds: 1),
+                                                              showCloseIcon: true,
+                                                              content: Text("İnternet bağlantısı yoxdur", style: GoogleFonts.poppins(color: Colors.black),),
+                                                              behavior: SnackBarBehavior.floating,
+                                                              backgroundColor: Colors.red.shade100,
+                                                              shape: RoundedRectangleBorder(),
+                                                            ));                                                      }
                                                     },
                                                     title: Text(itemsName[index], style: GoogleFonts.alata(fontSize: 18),),
                                                     trailing: itemsName[index].contains(box.read("nameOfCity")??"Bakı") ? Icon(Icons.check_circle_outline, color: Colors.indigoAccent,) : Icon(Icons.circle_outlined),
@@ -1217,4 +1240,142 @@ Padding buildYoutube(BuildContext context, Video video) {
     ),
   );
 }
+
+Padding buildEsma(BuildContext context, int index) {
+  return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 10 ),
+      child:  Container(
+    width: double.infinity,
+    child: Column(
+      children: [
+        ListTile(
+            leading:  Image.asset("assets/esma.png", width: 23, color: Colors.deepOrange, ),
+            isThreeLine: true,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(esmaTileListe[index], style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 25, color:  Colors.orange,),),
+                Text(arabItem[index], maxLines: 10, overflow: TextOverflow.ellipsis ,textAlign: TextAlign.justify, style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.deepOrange) ,)
+
+              ],
+            ),
+            subtitle: Padding(
+              padding: EdgeInsets.only(bottom: 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(height: 30,),
+                  Text("”${mena[index]}“", maxLines: 10, overflow: TextOverflow.ellipsis ,textAlign: TextAlign.justify, style: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.w500) ,),
+                  SizedBox(height: 15,)
+                ],
+              )
+
+            )
+        ),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: ElevatedButton(onPressed: (){
+                Navigator.push(context, CupertinoPageRoute(builder: (context)=>EsmaScreen()));
+                // void _launchUrl(String patha) async {
+                //   if (!await launch(Uri.parse(patha).toString(), forceSafariVC: true, forceWebView: false )) throw 'Could not launch $patha';
+                // }
+                // _launchUrl("https://www.gozelislam.com/");
+              }, child: Text("Daha çox", style: GoogleFonts.poppins(),),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent, elevation: 0, shadowColor: Colors.transparent, side: BorderSide(width: .8)),),
+            ),
+            IconButton(
+                onPressed: ()async{
+                  await Share.share(" ${arabItem[Jiffy.now().weekOfYear]}  \n ${esmaTileListe[Jiffy.now().weekOfYear]} \n ${mena[Jiffy.now().weekOfYear]}  \n ${textShareText}");
+                }, icon: Icon(Icons.share_rounded, color: Colors.red,)),
+
+
+          ],
+        ),
+        SizedBox(height: 10,)
+
+
+
+      ],
+    ),
+    decoration: BoxDecoration(
+        border: Border.all(width: 0.2, color: Colors.red),
+        color: Theme.of(context).colorScheme.onInverseSurface,
+        borderRadius: BorderRadius.circular(15)
+    ),
+  )
+
+  );
+}
+
+Padding buildBanner(BuildContext context, ) {
+  var _list = ["assets/dinikitablar1.png", "assets/dinikitablar2.png", "assets/dinikitablar3.png",  ];
+  return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 0 ),
+      child:  Container(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 103,
+              child: Swiper(
+                  pagination: SwiperPagination(
+                    margin: EdgeInsets.only(top: 60),
+                      builder: DotSwiperPaginationBuilder(
+                      activeColor: appBarColor, color: Colors.white),
+                      alignment: Alignment.bottomCenter),
+                  indicatorLayout: PageIndicatorLayout.SCALE,
+                  itemCount: _list.length,
+                  itemBuilder: (context, index){
+                    return ClipRRect(
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+                        child: Image.asset(_list[index]));
+                  }),
+            ),
+            SizedBox(height: 10,),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: ElevatedButton(onPressed: (){
+                    Navigator.push(context, CupertinoPageRoute(builder: (context)=>EsmaScreen()));
+                    void _launchUrl(String patha) async {
+                      if (!await launch(Uri.parse(patha).toString(), forceSafariVC: true, forceWebView: false )) throw 'Could not launch $patha';
+                    }
+                    _launchUrl("https://form.jotform.com/200363853004445");
+                  }, child: Text("Sifariş et", style: GoogleFonts.poppins(),),
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent, elevation: 0, shadowColor: Colors.transparent, side: BorderSide(width: .8)),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 8),
+                  child: ElevatedButton(onPressed: (){
+                    Navigator.push(context, CupertinoPageRoute(builder: (context)=>BookScreen()));
+                    // void _launchUrl(String patha) async {
+                    //   if (!await launch(Uri.parse(patha).toString(), forceSafariVC: true, forceWebView: false )) throw 'Could not launch $patha';
+                    // }
+                    // _launchUrl("https://www.gozelislam.com/");
+                  }, child: Text("Oxu", style: GoogleFonts.poppins(fontSize: 15 ,fontWeight: FontWeight.bold,),),
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent, elevation: 0, shadowColor: Colors.transparent, side: BorderSide(width: .8)),),
+                ),
+              ],
+            ),
+            SizedBox(height: 10,)
+
+
+
+          ],
+        ),
+        decoration: BoxDecoration(
+            color: appBarColor.shade50,
+            borderRadius: BorderRadius.circular(15)
+        ),
+      )
+
+  );
+}
+
+
 

@@ -164,7 +164,7 @@ class _YouTubeCardState extends State<YouTubeCard> {
                             ClipRRect(child: Hero(
                               tag: index.toString(),
                               child: FadeInImage(
-                                placeholder: AssetImage("assets/logi.jpg"),
+                                placeholder: AssetImage("assets/logi.png"),
                                 image: NetworkImage(video.thumbnailUrl),),
                             ),
 

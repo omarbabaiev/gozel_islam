@@ -8,7 +8,6 @@ class LinksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var _w = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         scrolledUnderElevation: 3,
         centerTitle: true,

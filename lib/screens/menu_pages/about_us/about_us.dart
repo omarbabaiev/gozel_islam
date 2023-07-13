@@ -21,7 +21,6 @@ class AboutUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           scrolledUnderElevation: 3,
           centerTitle: true,
@@ -32,39 +31,46 @@ class AboutUs extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: DrawerHeader(
+              //       decoration: BoxDecoration(color: appBarColor, borderRadius: BorderRadius.circular(15)),
+              //       child: Center(child: Column(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Text("Gözəl İslam", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 40),),
+              //           Text("Dini kitablar, dini mövzular, sual cavab" , style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
+              //           Text("www.gozelislam.com", style: GoogleFonts.arimaMadurai(color: Colors.white60, fontWeight: FontWeight.bold, ),),],
+              //       ))),
+              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: DrawerHeader(
-                    decoration: BoxDecoration(color: appBarColor, borderRadius: BorderRadius.circular(15)),
-                    child: Center(child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Gözəl İslam", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 40),),
-                        Text("Dini kitablar, dini mövzular, sual cavab" , style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
-                        Text("www.gozelislam.com", style: GoogleFonts.arimaMadurai(color: Colors.white60, fontWeight: FontWeight.bold, ),),],
-                    ))),
+                child: Image.asset("assets/logi.png", height: 200,),
               ),
+              Divider(),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
                     "Mobil tətbiqimiz www.gozelislam.com saytı əsasında Əhli-sünnət alimlərinin qiymətli əsərlərini əsas alaraq əhli-sünnət etiqadına uyğun olaraq hazırlanmışdır. "
-                        "Tətbiqmizdəki məlumatlar bütün insanların istifadəsi üçün hazırlanmışdır. "
+                        "Tətbiqimizdəki məlumatlar bütün insanların istifadəsi üçün hazırlanmışdır. "
                         "Burada dini mövzular, məqalələr, söhbətlər, suallar və cavabları əks olunmuşdur. Əslinə sadiq qalmaq şərtilə icazə almadan hər kəs istədiyi kimi istifadə edə bilər.",
-                   textAlign: TextAlign.justify , style: GoogleFonts.arimaMadurai(fontSize: 20),
+                   textAlign: TextAlign.justify , style: GoogleFonts.alata(fontSize: 20),
                 ),
-              )
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.mail),
+                title: Text("Texniki problemləri bizə bildirin", ),
+                subtitle: Text("admin@gozelislam.com"),
+              ),
+
               
             ],
           ),
         )
     );
   }
-  var _list = [
-    Image.asset("assets/magaza.jpg", fit: BoxFit.fill,),
-    Image.asset("assets/magaza2.jpg", fit: BoxFit.fill,),
 
-
-  ];
 
 }
 

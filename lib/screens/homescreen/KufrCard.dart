@@ -81,8 +81,7 @@ class _KufrCardState extends State<KufrCard> {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(height: 60,),
-                                              Divider(),
-                                              SizedBox(height: 10,),
+                                              SizedBox(height: 20,),
                                               Text("Küfrə düşən nə etməlidir?",
                                                 style: GoogleFonts.poppins(fontSize: 15 ,  fontWeight: FontWeight.bold  ),),
                                               SizedBox(height: 20,),
@@ -165,12 +164,24 @@ class _KufrCardState extends State<KufrCard> {
                                       ),
                                       Align(
                                         alignment: Alignment.topRight,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: IconButton.filledTonal(
-                                              onPressed: (){
-                                            Navigator.pop(context);
-                                          }, icon: Icon(Icons.cancel_outlined, size: 30,)),
+                                        child: Container(
+                                          decoration: BoxDecoration(  
+                                            borderRadius: BorderRadius.circular(15),
+                                            color: appBarColor.shade100,
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text("Çox mühüm açıqlama", style: GoogleFonts.poppins(fontSize: 17 , fontWeight: FontWeight.bold  ),),
+                                                IconButton.filledTonal(
+                                                    onPressed: (){
+                                                  Navigator.pop(context);
+                                                }, icon: Icon(Icons.cancel_outlined, size: 30,)),
+                                              ],
+                                            ),
+                                          ),
                                         ),
                                       ),
 

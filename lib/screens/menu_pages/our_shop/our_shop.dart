@@ -21,7 +21,6 @@ class OurShop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         scrolledUnderElevation: 3,
         centerTitle: true,
@@ -39,20 +38,19 @@ class OurShop extends StatelessWidget {
               FadeEffect()
             ],
             child: Swiper(
-                autoplay: true,
                 pagination: SwiperPagination(builder: DotSwiperPaginationBuilder(activeColor: appBarColor, color: Colors.white),
                     alignment: Alignment.bottomCenter),
                 indicatorLayout: PageIndicatorLayout.SCALE,
-                itemCount: 2,
+                itemCount: 1,
                 itemBuilder: (context, index){
-                  return _list[index];
+                  return _list[0];
                 }),
           ),
         ),
             SizedBox(height: 40,),
 
             ListTile(
-              leading: Icon(Icons.shopping_bag_outlined, color: Colors.green, ),
+              leading: Icon(Icons.shopping_bag_outlined, color: Colors.red, ),
               title: Text("Mağaza haqqında", style: GoogleFonts.arimaMadurai(),),
               subtitle: Text("Dini kitablar, namaz geyimləri, səccadələr, təsbehlər və aksesuarlar", style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold),),
             ),
@@ -64,7 +62,7 @@ class OurShop extends StatelessWidget {
               trailing: ElevatedButton(onPressed: ()async {
                 launch("tel://+(994) 55 233 70 70");
               }, child: Text("Zəng et"), style: ElevatedButton.styleFrom(elevation: 0),),
-              leading: Icon(Icons.call, color: Colors.green),
+              leading: Icon(Icons.call, color: Colors.red),
               title: Text("Telefon", style: GoogleFonts.arimaMadurai(),),
               subtitle: Text("+(994) 55 233 70 70", style: GoogleFonts.arimaMadurai( fontWeight: FontWeight.bold),),
             ),
@@ -77,7 +75,7 @@ class OurShop extends StatelessWidget {
 
               launchMailto();
               }, child: Text("Mail göndər"), style: ElevatedButton.styleFrom(elevation: 0),),
-              leading: Icon(Icons.mail, color: Colors.green),
+              leading: Icon(Icons.mail, color: Colors.red),
               title: Text("E-mail", style: GoogleFonts.arimaMadurai(),),
               subtitle: Text("admin@gozelislam.com", style: GoogleFonts.arimaMadurai( fontWeight: FontWeight.bold),),
             ),
@@ -86,7 +84,7 @@ class OurShop extends StatelessWidget {
               child: Divider(),
             ),
             ListTile(
-              leading: Icon(Icons.location_on_outlined, color: Colors.green),
+              leading: Icon(Icons.location_on_outlined, color: Colors.red),
               title: Text("Ünvan", style: GoogleFonts.arimaMadurai(),),
               subtitle: Text("Bineqedi Rayonu, 6-cı mik, Zərifə Parkının yanı. Nəsimi mətrosunun yaxınlığı.", style: GoogleFonts.arimaMadurai( fontWeight: FontWeight.bold),),
             ),
@@ -95,7 +93,7 @@ class OurShop extends StatelessWidget {
               child: Divider(),
             ),
             ListTile(
-              leading: Icon(Icons.local_shipping_outlined, color: Colors.green),
+              leading: Icon(Icons.local_shipping_outlined, color: Colors.red),
               title: Text("Çatdırılma", style: GoogleFonts.arimaMadurai(),),
               subtitle: Text("Bakı daxili və rayonlara poçtla çatdırılma", style: GoogleFonts.arimaMadurai( fontWeight: FontWeight.bold),),
             ),

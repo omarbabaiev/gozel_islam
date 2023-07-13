@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gozel_islam/Constants.dart';
 import 'package:gozel_islam/screens/homescreen/homescreen.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gozel_islam/screens/splash_screen/splash_error.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
 
@@ -32,6 +33,10 @@ var isSucces = false;
 var url = Uri.parse(
     "https://prayer-time-ws.herokuapp.com/api/dates/json/1.0/allDataYearly?indexOfCity=1425");
 var isIntroUpdated = false;
+
+Timer? mytimer;
+var count = 0;
+bool progress = false;
 
 Future<void> getData() async {
   if (box.read("time") == null || (box.read("yearOfUpdate")!=DateTime.now().year)) {
@@ -155,10 +160,23 @@ _value = false;
 });
 });
 Timer(Duration(milliseconds: 2000), () async{
-  await getData();
+  try{
+    await getData();
+
+  }catch(e){
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SplashError()));
+  }
   setState(() {
 scaleController.forward();
 });
+});
+mytimer = Timer.periodic(Duration(seconds: 1), (timer) {
+  setState(() {
+    count++;
+    if (count == 7) {
+      progress = true;
+    }
+  });
 });
 }
 
@@ -195,7 +213,22 @@ color: appBarColor,
 borderRadius: BorderRadius.circular(20),
 ),
 child: Center(
-child: Image.asset("assets/logi.png"),),),),),);}}
+child: Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+        Image.asset("assets/logi.png"),
+    SizedBox(
+      height: 30,
+    ),
+    Visibility(
+        visible: progress,
+        child: Center(
+          child: CircularProgressIndicator(
+            color: appBarColor,
+          ),
+        ))
+  ],
+),),),),),);}}
 
 class ThisIsFadeRoute extends PageRouteBuilder {
 final Widget page;

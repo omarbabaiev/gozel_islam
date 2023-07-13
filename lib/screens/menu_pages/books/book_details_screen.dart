@@ -32,7 +32,6 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         scrolledUnderElevation: 3,
         centerTitle: true,
@@ -59,7 +58,7 @@ class _BookDetailsScreenState extends State<BookDetailsScreen> {
                       child: FadeInImage(
                           height: 150,
                           placeholder: AssetImage("assets/header.png"),
-                          image: NetworkImage(widget.image, )
+                          image: AssetImage(widget.image, )
                       ),),
                       Column(
                         mainAxisSize: MainAxisSize.min,

@@ -312,7 +312,7 @@ class _ThemesState extends State<Themes> {
           getMovzuDialog();
           getMovzuPage();
 
-        }, child: Icon(Icons.refresh),
+        }, child: Icon(Icons.skip_next),
 
         ),
         backgroundColor: _bacgroundColor,
@@ -338,67 +338,54 @@ class _ThemesState extends State<Themes> {
         body:
         _show ?
         Scrollbar(
-          child: RefreshIndicator(
-            onRefresh: ()async{
-              await getMovzuDialog();
-              getMovzuPage();
-            },
-            child: ListView(
-              children: <Widget>[
-
-
-                Container(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Animate(
+          child: ListView(
+            children: <Widget>[
+              Container(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Animate(
+                          effects: [
+                            FadeEffect(duration: Duration(milliseconds: 200))
+                          ],
+                          child: Animate(
                             effects: [
-                              FadeEffect(duration: Duration(milliseconds: 200))
+                              FadeEffect(duration: Duration(milliseconds: 400))
                             ],
-                            child: Animate(
-                              effects: [
-                                FadeEffect(duration: Duration(milliseconds: 400))
-                              ],
-                              child: Text(
-                                bashliq10.toString(), textAlign: TextAlign.center, style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 25),),
-                            ),
+                            child: Text(
+                              bashliq10.toString(), textAlign: TextAlign.center, style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 25),),
                           ),
-                          AnimatedDefaultTextStyle(
-                            style: GoogleFonts.poppins(color: Colors.black, fontSize: _fontSize),
-                            duration:Duration(milliseconds: 400),
-                            child: Html(data: metin10,  style: {
-                              "span": Style(
-                                  fontSize: FontSize(_fontSize),
-                                  fontFamily: GoogleFonts.poppins().fontFamily
-                              ),
-                              "p": Style(
-                                  fontSize: FontSize(_fontSize),
-                                  fontFamily: GoogleFonts.poppins().fontFamily
-                              ),
-
-
-                            },)
-                            // Text('${metin10.toString()}' , textAlign: TextAlign.justify,  ),
+                        ),
+                        Html(data: metin10,  style: {
+                          "span": Style(
+                              fontSize: FontSize(_fontSize),
+                              fontFamily: GoogleFonts.arimaMadurai().fontFamily
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: TextButton(onPressed: () {
-                              _launchUrl(_link2.toString());
-                            },
-                                child: Center(child: Text('Saytda bax' ,style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.blue ),))),
-                          )
-                        ],
-                      ),
-                    )),
+                          "p": Style(
+                              fontSize: FontSize(_fontSize),
+                              fontFamily: GoogleFonts.arimaMadurai().fontFamily
+                          ),
+
+
+                        },),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: TextButton(onPressed: () {
+                            _launchUrl(_link2.toString());
+                          },
+                              child: Center(child: Text('Saytda bax' ,style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.blue ),))),
+                        )
+                      ],
+                    ),
+                  )),
 
 
 
-                //3
+              //3
 
-              ],
-            ),
+            ],
           ),
         ) : Center(child: CircularProgressIndicator(),)
     );

@@ -386,18 +386,16 @@ class _DiniReaderState extends State<DiniReader> {
                     style: {
                       "span": Style(
                         fontSize: FontSize(_fontSize),
+                        fontFamily:  GoogleFonts.arimaMadurai().fontFamily
                       ),
                       "p": Style(
                         fontSize: FontSize(16),
-                        fontFamily: GoogleFonts.poppins().fontFamily,
                       ),
                       "img": Style(
                         fontSize: FontSize(16),
-                        fontFamily: GoogleFonts.poppins().fontFamily,
                       ),
                       "td": Style(
                         fontSize: FontSize(16),
-                        fontFamily: GoogleFonts.poppins().fontFamily,
                       ),
 
 
