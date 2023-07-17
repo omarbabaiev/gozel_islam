@@ -357,11 +357,16 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
    LinkTile(name:"www.namazvakti.com", path:"www.namazvakti.com",subtitle: "Bütün ölkələrin namaz vaxtları"),
    LinkTile(name:"www.islamicbooksforfree.com",path: "www.islamicbooksforfree.com", subtitle:"Fərqli Dillərdə  Dini Kitablar"),
    LinkTile(name:"www.booksonhook.com", path:"www.booksonhook.com", subtitle:"Fərqli Dillərdə  Dini Kitablar"),
-   LinkTile(name:"www.askidakitap.net", path:"www.askidakitap.net", subtitle:"Fərqli Dillərdə  Dini Kitablar")
+   LinkTile(name:"www.askidakitap.net", path:"www.askidakitap.net", subtitle:"Türkcə - Dini Mövzular və Sual-Cavab"),
+   LinkTile(name: "www.dinimizislam.com", path:"www.dinimizislam.com", subtitle: "Dini Kitablar"),
+   LinkTile(name:"www.turkalemiyiz.com", path:"https://www.turkalemiyiz.com/", subtitle:"Türk dünyasının tarix və mədəniyyət saytı"),
+   LinkTile(name:"www.ailevekadin.com", path:"http://www.ailevekadin.com/evlilikrehberi/", subtitle:"Ailə və evlilik haqqında bilgilər")
+
+
 
 
  ];
- String shortLink = "com.prayer_time_gi.app&pli=1";
+ String shortLink = "com.lezgindev.gozel.islam";
 
 
  var bookTileList = [
@@ -390,7 +395,7 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
    BookTile(
        "assets/books/1558894510_sevgili.jpg",
        "https://form.jotform.com/200363853004445",
-       "https://www.gozelislam.com/uploads/files/2019-06/1559852577_tam_ilmihal.pdf",
+       "https://www.gozelislam.com/uploads/files/2019-05/1559235585_mybelovedprophet-az-1.pdf",
        "Sevgili Peyğəmbərim (Sallallahu Əleyhi və Səlləm)",
        "Hüseyin Hilmi İşıq",
        sevgiliPey,
@@ -415,7 +420,7 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
    BookTile(
        "assets/books/hayata.jpeg",
        "https://form.jotform.com/200363853004445",
-       "https://www.gozelislam.com/uploads/files/2021-02/1613040685_namaz-yeni2020-144x214.pdf",
+       "https://www.gozelislam.com/uploads/files/2019-06/1559920221_mybelovedprophet-tr.pdf",
        "İki Cihan Günəşi Həzrəti Məhəmməd - in Həyatı (Sallallahu Əleyhi və Səlləm)",
        "Prof.Dr. Ramazan Ayvallı",
        hayatiTr, "7", "6"),
@@ -585,7 +590,7 @@ Rəsulullah, canlı rəsmi çəkənləri lənətlədi. (Buxari)
    ];
 
  var hikmetFakeData = "Dünya malı üçün çalışmaq asan, lakin hesabından qurtulmaq çətindir. (Fudayl bin İyad “rahmətullahi aleyh)";
- var textShareText = "https://play.google.com/store/apps/details?id=com.prayer_time_gi.app";
+ var textShareText = "https://play.google.com/store/apps/details?id=com.lezgindev.gozel.islam";
 
  var maraqliMetin = "Hənəfi məzhəbində dişlərin arası və diş çuxurları islanmazsa, qüsl olmaz. Bunun üçün dişə diş qapağı qoyulduqda və dolğu "
  "qoyulduqda qüsl səhih olmaz. İnsan cənabətlikdən qurtula bilməz. Qızıl, gümüş və nəcs olmayan başqa maddələrdən hazırlanan diş qapağı və"

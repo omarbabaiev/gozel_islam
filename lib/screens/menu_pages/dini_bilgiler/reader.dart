@@ -8,6 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
+import 'package:lottie/lottie.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../Constants.dart';
@@ -302,8 +304,8 @@ class _DiniReaderState extends State<DiniReader> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: appBarColor.shade200,
         child: Icon( headerList.contains(bashliq10) ? Icons.favorite : Icons.favorite_border, color: Colors.white,),
-        onPressed: () {
-        setState(() {
+        onPressed: bashliq10 != null ?
+            () {setState(() {
           if(!headerList.contains(bashliq10)){
             headerList.add(bashliq10);
             textList.add(metin10);
@@ -335,9 +337,7 @@ class _DiniReaderState extends State<DiniReader> {
                   ));
             });
           }
-        });
-
-        },
+        });} : null,
       ),
       key: _scaffoldKey,
       extendBodyBehindAppBar: true,
@@ -350,10 +350,15 @@ class _DiniReaderState extends State<DiniReader> {
               actions: [
                 IconButton(
                 icon: const Icon(Icons.settings),
-                color: Colors.white,
                 onPressed: () {
                _createBottomSheet();}
               ),
+                IconButton(
+                    icon: const Icon(Icons.share),
+                    onPressed: () async{
+                        await Share.share("${"${bashliq10}\n${widget.url}"}");
+                    }
+                ),
               ],
 
               elevation: 0,
@@ -416,5 +421,5 @@ class _DiniReaderState extends State<DiniReader> {
 
           ],
         ),
-      ) : Center(child: CircularProgressIndicator(),),
+      ) : Center(child: Lottie.asset("assets/progres.json", height: 100),),
     );}}

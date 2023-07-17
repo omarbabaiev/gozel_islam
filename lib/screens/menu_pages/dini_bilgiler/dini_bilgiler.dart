@@ -8,6 +8,7 @@ import 'package:gozel_islam/screens/menu_pages/dini_bilgiler/reader.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import '../../../Constants.dart';
 import 'dini_bilgiler2.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -282,7 +283,7 @@ class _DiniBilgiler1PageState extends State<DiniBilgiler1Page> {
             ); },)),
           )
           : Center(
-        child: CircularProgressIndicator(),
+        child: Lottie.asset("assets/progres.json", height: 100),
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:lottie/lottie.dart';
 import '../../../Constants.dart';
 import 'edit_image.dart';
 import 'image_model.dart';
@@ -65,7 +66,7 @@ Future<ImageModel>_fetchData()async{
             future: _fetchData(),
             builder: (BuildContext context, AsyncSnapshot<ImageModel> snapshot) {
                if(snapshot.connectionState == ConnectionState.waiting){
-                 return Center(child: CircularProgressIndicator(),);
+                 return Center(child: Lottie.asset("assets/progres.json", height: 100),);
                } else if(snapshot.connectionState == ConnectionState.done){
                  if(snapshot.hasData){
                    return  Scrollbar(

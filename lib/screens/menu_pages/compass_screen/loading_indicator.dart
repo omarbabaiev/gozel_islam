@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class LoadingIndicator extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class LoadingIndicator extends StatelessWidget {
 
     return Container(
       alignment: Alignment.center,
-      child:  CircularProgressIndicator(),
+      child:  Lottie.asset("assets/progres.json", height: 100),
     );
   }
 }

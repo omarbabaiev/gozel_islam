@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:gozel_islam/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as parser;
+import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -387,7 +388,7 @@ class _ThemesState extends State<Themes> {
 
             ],
           ),
-        ) : Center(child: CircularProgressIndicator(),)
+        ) : Center(child: Lottie.asset("assets/progres.json", height: 100),)
     );
 
 

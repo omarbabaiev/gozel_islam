@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
+import 'package:lottie/lottie.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart' as parser;
@@ -95,7 +96,7 @@ class _HikmetliSozlerCardScreenState extends State<HikmetliSozlerCardScreen> wit
 
       ),
 
-      body: image.isEmpty ? Center(child: CircularProgressIndicator(),) : FutureBuilder(
+      body: image.isEmpty ? Center(child: Lottie.asset("assets/progres.json", height: 100),) : FutureBuilder(
         future: _getData(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           return Scrollbar(

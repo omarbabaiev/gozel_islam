@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
+import 'package:lottie/lottie.dart';
 
 import '../../../Constants.dart';
 import 'dini_bilgiler.dart';
@@ -133,7 +134,7 @@ class _DiniBilgilerPageState extends State<DiniBilgilerPage> {
                   child: Divider(),
                 );
             }, ) ),
-      ):  Center(child: CircularProgressIndicator(),),
+      ):  Center(child: Lottie.asset("assets/progres.json", height: 100),),
     );
 
   }

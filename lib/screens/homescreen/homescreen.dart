@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -22,11 +23,13 @@ import 'package:gozel_islam/screens/menu_pages/hikmetli_sozler_card/hikmetli_soz
 import 'package:gozel_islam/screens/menu_pages/ilahiler_screen/illahiler_screen.dart';
 import 'package:gozel_islam/screens/homescreen/home_screen_widgets.dart';
 import 'package:gozel_islam/screens/menu_pages/links/links.dart';
+import 'package:gozel_islam/screens/menu_pages/mosque/mosque%20screen.dart';
 import 'package:gozel_islam/screens/menu_pages/our_shop/our_shop.dart';
 import 'package:gozel_islam/screens/menu_pages/qeza_namaz/qeza_namaz.dart';
 import 'package:gozel_islam/screens/menu_pages/recent_list/recent_list_page.dart';
 import 'package:gozel_islam/screens/menu_pages/sual_gonder/sual_gonder.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../constants.dart';
 import '../menu_pages/privacy_policy/privacy_policy.dart';
@@ -46,6 +49,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+
   var channel;
   var video;
   var _isYoutube = true;
@@ -280,6 +284,7 @@ late int index;
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAnalytics analytics = Provider.of<FirebaseAnalytics>(context, listen: false);
     return Scaffold(
       drawer: Drawer(
         backgroundColor: Theme.of(context).colorScheme.onInverseSurface,
@@ -292,114 +297,157 @@ late int index;
                   color: Colors.white),
               child: Image.asset("assets/header.png"),),
             // ListTile(
+            // style: ListTileStyle.drawer,
             //   leading: Icon(Icons.home_outlined, color: Colors.red,),
             //   title: Text("Əsas səhifə", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
-              onTap: (){
+              style: ListTileStyle.drawer,
+              onTap: ()async{
+                await analytics.logEvent(
+                  name: 'dini_kitablar',
+                );
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>BookScreen()));
               },
               leading: Icon(Icons.book_outlined, color: Colors.red,),
               title: Text("Dini kitablar", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
         ListTile(
-          onTap: (){
+          style: ListTileStyle.drawer,
+          onTap: ()async{
+            await analytics.logEvent(
+              name: 'dini_bilgilər',
+            );
             Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>DiniBilgilerPage()));
           },
           leading: Icon(Icons.view_day_outlined, color: Colors.red,),
           title: Text("Dini bilgilər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
-              onTap: (){
+              style: ListTileStyle.drawer,
+              onTap: ()async{
+                await analytics.logEvent(
+                  name: 'recent_list',
+                );
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>RecentListPage()));
               },
               leading: Icon(Icons.receipt, color: Colors.red,),
               title: Text("Sonra oxunacaqlar", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             // ListTile(
+            // style: ListTileStyle.drawer,
             //   onTap: (){
             //     Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>ZikirlerPage()));
             //   },
             //   leading: Image.asset("assets/tasbeh1.png", width: 30, color: Colors.black45,),
             //   title: Text("Zikrlər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
-              onTap: (){
-                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>PrayerTimeTable()));
-              },
-              leading: Icon(Icons.calendar_month, color: Colors.red,),
-              title: Text("Namaz təqvimi", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
-            ListTile(
-              onTap: (){
+              style: ListTileStyle.drawer,
+              onTap: ()async{
+                await analytics.logEvent(
+                  name: 'shop',
+                );
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>OurShop()));
               },
               leading: Icon(Icons.shopping_bag_outlined, color: Colors.red,),
               title: Text("Mağazamız", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
+              style: ListTileStyle.drawer,
+              onTap: (){
+
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>PrayerTimeTable(
+                )));
+              },
+              leading: Icon(Icons.calendar_month, color: Colors.red,),
+              title: Text("Namaz təqvimi", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+            ListTile(
+              style: ListTileStyle.drawer,
+              onTap: (){
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>MapMosque()));
+              },
+              leading: Icon(Icons.mosque_outlined, color: Colors.red,),
+              title: Text("Məscidlər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+
+            ListTile(
+              style: ListTileStyle.drawer,
+              onTap: ()async{
+                await analytics.logEvent(
+                  name: 'dini_kitablar',
+                );
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>CompassMain()));
+              },
+              leading: Icon(Icons.compass_calibration_outlined, color: Colors.red,),
+              title: Text("Kompass", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+            ListTile(
+              style: ListTileStyle.drawer,
               onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>EcardsScreen()));
               },
               leading: Icon(Icons.image_aspect_ratio, color: Colors.red,),
               title: Text("E-kart", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
+              style: ListTileStyle.drawer,
               onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>HikmetliSozlerCardScreen()));
               },
               leading: Icon(Icons.image_aspect_ratio, color: Colors.red,),
               title: Text("Hikmətli sözlər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
-            ListTile(
-              onTap: (){
-                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>CompassMain()));
-              },
-              leading: Icon(Icons.compass_calibration_outlined, color: Colors.red,),
-              title: Text("Kompass", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+
+
+
 
 
             ListTile(
+              style: ListTileStyle.drawer,
             onTap: (){
             Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>YouTubeCard()));},
             leading: Icon(Icons.video_collection_outlined, color: Colors.red,),
             title: Text("Dini Videolar", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
 
             ListTile(
+              style: ListTileStyle.drawer,
               onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>FilmlerScreen()));
               },
               leading: Icon(Icons.video_library_outlined, color: Colors.red,),
               title: Text("Dini filmlər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
+              style: ListTileStyle.drawer,
               onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>IlahilerScreen()));
               },
               leading: Icon(Icons.music_note, color: Colors.red,),
               title: Text("İlahilər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
         ListTile(
+          style: ListTileStyle.drawer,
           onTap: (){
             Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>QezaNamaz()));
           },
           leading: Icon(Icons.calculate_outlined, color: Colors.red,),
           title: Text("Qəza hesablama", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
+              style: ListTileStyle.drawer,
               onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>EsmaScreen()));
               },
               leading: Image.asset("assets/esma.png", width: 23, color: Colors.red, ),
               title: Text("Esmail Hüsna", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
+              style: ListTileStyle.drawer,
               onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>LinksScreen()));
               },
               leading: Icon(Icons.link_rounded, color: Colors.red,),
               title: Text("Faydalı linklər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
-              onTap: (){
+              style: ListTileStyle.drawer,
+              onTap: ()async{
+                await analytics.logEvent(
+                  name: 'sual_gonder',
+                );
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>SendEmail()));
               },
               leading: Icon(Icons.question_answer_outlined, color: Colors.red,),
               title: Text("Sual göndər", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+
             ListTile(
-              onTap: ()
-              async{
-                await Share.share("${"Dini Mövzular, Söhbətlər və Sual-Cavab\n${textShareText}"}");
-              },
-              leading: Icon(Icons.share, color: Colors.red,),
-              title: Text("Paylaş", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
-            ListTile(
+              style: ListTileStyle.drawer,
               onTap: (){
                 Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>AboutUs()));
 
@@ -407,12 +455,7 @@ late int index;
               leading: Icon(Icons.info_outline, color: Colors.red,),
               title: Text("Haqqımızda", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
             ListTile(
-              onTap: (){
-                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>PrivacyPolicy()));
-              },
-              leading: Icon(Icons.privacy_tip_outlined, color: Colors.red,),
-              title: Text("Privacy policy", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
-            ListTile(
+              style: ListTileStyle.drawer,
               onTap: (){
                 if (Platform.isAndroid || Platform.isIOS) {
                   final appId = Platform.isAndroid ? '${shortLink}' : 'YOUR_IOS_APP_ID';
@@ -428,10 +471,27 @@ late int index;
                 }
               },
               leading: Icon(Icons.star_rate_outlined, color: Colors.red,),
-              title: Text("Dəyərləndir", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+              title: Text("Qiymətləndir", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+
+            ListTile(
+              style: ListTileStyle.drawer,
+              onTap: (){
+                Navigator.of(context).push(CupertinoPageRoute(builder: (context)=>PrivacyPolicy()));
+              },
+              leading: Icon(Icons.privacy_tip_outlined, color: Colors.red,),
+              title: Text("Privacy policy", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
+            ListTile(
+              style: ListTileStyle.drawer,
+              onTap: ()
+              async{
+                await Share.share("${"Dini Mövzular, Söhbətlər və Sual-Cavab\n${textShareText}"}");
+              },
+              leading: Icon(Icons.share, color: Colors.red,),
+              title: Text("Paylaş", style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
 
             Divider(),
             ListTile(
+              style: ListTileStyle.drawer,
               title: Text("Version 1.0.0", textAlign: TextAlign.center, style: GoogleFonts.poppins(fontWeight: FontWeight.w500,),), ),
 
           ],
@@ -480,7 +540,7 @@ late int index;
               buildHikmet(context, hikmetliSoz, hikmetliSozShare),
               buildMovzu(context, bashliq, metin, metinShare ),
               buildMaraqliMovzular( box.read("_bashliq3")??"Dişdə dolğu və diş qapağının olması", box.read("_metin3")?? maraqliMetin, box.read("_link2"),  metin3share, context ),
-              buildEsma(context, index ),
+              BuildEsma(index),
               _isYoutube ? SizedBox()  : buildYoutube(context, video,  ),
               buildBanner(context),
               buildOtherMovzu(context, ),

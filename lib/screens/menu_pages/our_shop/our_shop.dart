@@ -1,5 +1,7 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../../../constants.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -32,18 +34,19 @@ class OurShop extends StatelessWidget {
         child: Column(
           children: [
           SizedBox(
-          height: MediaQuery.of(context).size.height/4,
+          height: 300,
           child: Animate(
             effects: [
               FadeEffect()
             ],
             child: Swiper(
+                autoplay: true,
                 pagination: SwiperPagination(builder: DotSwiperPaginationBuilder(activeColor: appBarColor, color: Colors.white),
                     alignment: Alignment.bottomCenter),
                 indicatorLayout: PageIndicatorLayout.SCALE,
-                itemCount: 1,
+                itemCount: _list.length,
                 itemBuilder: (context, index){
-                  return _list[0];
+                  return _list[index];
                 }),
           ),
         ),
@@ -60,6 +63,10 @@ class OurShop extends StatelessWidget {
             ),
             ListTile(
               trailing: ElevatedButton(onPressed: ()async {
+                  FirebaseAnalytics analytics = Provider.of<FirebaseAnalytics>(context, listen: false);
+                  await analytics.logEvent(
+                    name: 'test_event',
+                  );
                 launch("tel://+(994) 55 233 70 70");
               }, child: Text("Zəng et"), style: ElevatedButton.styleFrom(elevation: 0),),
               leading: Icon(Icons.call, color: Colors.red),
@@ -106,8 +113,16 @@ class OurShop extends StatelessWidget {
     );
   }
   var _list = [
-    Image.asset("assets/magaza.jpg", fit: BoxFit.fill,),
-    Image.asset("assets/magaza2.jpg", fit: BoxFit.fill,),
+    Image.asset("assets/photo_5289741821687222363_y.jpg", fit: BoxFit.fill,),
+    Image.asset("assets/photo_5289741821687222370_y.jpg", fit: BoxFit.fill,),
+    Image.asset("assets/photo_5289741821687222373_y.jpg", fit: BoxFit.fill,),
+    Image.asset("assets/photo_5289741821687222376_y.jpg", fit: BoxFit.fill,),
+    Image.asset("assets/photo_5289741821687222377_y.jpg", fit: BoxFit.fill,),
+    Image.asset("assets/photo_5289741821687222363_y.jpg", fit: BoxFit.fill,),
+    Image.asset("assets/photo_5289741821687222365_y.jpg", fit: BoxFit.fill,),
+    Image.asset("assets/photo_5289741821687222367_y.jpg", fit: BoxFit.fill,),
+
+
 
 
   ];

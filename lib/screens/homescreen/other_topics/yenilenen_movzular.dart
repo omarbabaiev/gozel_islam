@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gozel_islam/screens/menu_pages/dini_bilgiler/reader.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
+import 'package:lottie/lottie.dart';
 
 import '../../../Constants.dart';
 import '../../menu_pages/dini_bilgiler/dini_bilgiler.dart';
@@ -137,7 +138,7 @@ class _YenilenenMovzularState extends State<YenilenenMovzular> {
                 child: Divider(),
               );
             }, ) ),
-      ):  Center(child: CircularProgressIndicator(),),
+      ):  Center(child: Lottie.asset("assets/progres.json", height: 100),),
     );
 
   }

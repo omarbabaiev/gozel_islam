@@ -249,7 +249,7 @@ class _MaraqliMovzuReaderState extends State<MaraqliMovzuReader> {
         scrolledUnderElevation: 3,
         centerTitle: true,
         backgroundColor: appBarColor,
-        title: Text("Günün mövzusu", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
+        title: Text("Maraqlı Mövzular", style: GoogleFonts.arimaMadurai(color: Colors.white, fontWeight: FontWeight.bold, ),),
         actions: [
           IconButton(
               icon: const Icon(Icons.settings),
@@ -289,9 +289,18 @@ class _MaraqliMovzuReaderState extends State<MaraqliMovzuReader> {
                     duration:Duration(milliseconds: 400),
                     child: Html(data: widget.metin ,
                       style: {
-                        "span": Style(
-                          fontSize: FontSize(_fontSize),
-                        ),
+                      "span": Style(
+                      fontSize: FontSize(_fontSize),
+                      ),
+                      "p": Style(
+                      fontSize: FontSize(16),
+                      ),
+                      "img": Style(
+                      fontSize: FontSize(16),
+                      ),
+                      "td": Style(
+                      fontSize: FontSize(16),
+                      ),
 
 
                       },  ),),

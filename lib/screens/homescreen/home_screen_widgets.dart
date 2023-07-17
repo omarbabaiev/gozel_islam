@@ -9,6 +9,8 @@ import 'package:gozel_islam/screens/menu_pages/books/book_screen.dart';
 import 'package:gozel_islam/screens/menu_pages/dini_bilgiler/gunun_movzusu.dart';
 import 'package:gozel_islam/screens/menu_pages/esmaul_husna/esma_husna.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:lottie/lottie.dart';
+import 'package:share_files_and_screenshot_widgets/share_files_and_screenshot_widgets.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +80,7 @@ Widget headerContainers(BuildContext context){
                   children: [
                     Align(
                       alignment: Alignment.topLeft,
-                        child: Image.asset("assets/open-book.png", height: 40,)),
+                        child: Image.asset("assets/ketupat.png", height: 40,)),
                     Text("Doğru İman Bilgiləri", style: GoogleFonts.alata(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
                   ],
 
@@ -95,7 +97,7 @@ Widget headerContainers(BuildContext context){
             padding: const EdgeInsets.all(4.0),
             child: InkWell(
               onTap: (){
-                Navigator.push(context, CupertinoPageRoute(builder: (context)=>DiniBilgiler1Page(link: Uri.parse("https://www.gozelislam.com/qusl/namaz/"), bashliq: "İman Bilgiləri")));
+                Navigator.push(context, CupertinoPageRoute(builder: (context)=>DiniBilgiler1Page(link: Uri.parse("https://www.gozelislam.com/qusl/namaz/"), bashliq: "Namaz bilgiləri")));
 
               },
               child: Container(
@@ -104,8 +106,8 @@ Widget headerContainers(BuildContext context){
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset("assets/open-book.png", height:40,),
-                    Text("Namaz Öyrənirəm", style: GoogleFonts.alata(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
+                    Image.asset("assets/praying.png", height:40,),
+                    Text("Namaz bilgiləri", style: GoogleFonts.alata(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
 
 
                   ],
@@ -124,7 +126,7 @@ Widget headerContainers(BuildContext context){
             padding: const EdgeInsets.all(4.0),
             child: InkWell(
               onTap: (){
-                Navigator.push(context, CupertinoPageRoute(builder: (context)=>DiniBilgiler1Page(link: Uri.parse("https://www.gozelislam.com/qusl/qusul/"), bashliq: "İman Bilgiləri")));
+                Navigator.push(context, CupertinoPageRoute(builder: (context)=>DiniBilgiler1Page(link: Uri.parse("https://www.gozelislam.com/qusl/qusul/"), bashliq: "Qüsl, Dəstəmaz, Heyz")));
 
               },
               child: Container(
@@ -133,14 +135,14 @@ Widget headerContainers(BuildContext context){
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset("assets/open-book.png", height:40,),
+                    Image.asset("assets/wudhu.png", height:40,),
                     Text("Qüsl, Dəstəmaz, Heyz", style: GoogleFonts.alata(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
                   ],
 
                 ),
                 width: 120,
                 decoration: BoxDecoration(
-                    color: Colors.lightBlue,
+                    color: Colors.red,
                     borderRadius: BorderRadius.circular(15)
                 ),
               ),
@@ -150,7 +152,7 @@ Widget headerContainers(BuildContext context){
             padding: const EdgeInsets.all(4.0),
             child: InkWell(
               onTap: (){
-                Navigator.push(context, CupertinoPageRoute(builder: (context)=>DiniBilgiler1Page(link: Uri.parse("https://www.gozelislam.com/oruc-ve-ramazan/"), bashliq: "İman Bilgiləri")));
+                Navigator.push(context, CupertinoPageRoute(builder: (context)=>DiniBilgiler1Page(link: Uri.parse("https://www.gozelislam.com/oruc-ve-ramazan/"), bashliq: "Ramazan və oruc bilgiləri")));
 
               },
               child: Container(
@@ -159,7 +161,7 @@ Widget headerContainers(BuildContext context){
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset("assets/open-book.png", height: 40,),
+                    Image.asset("assets/lantern.png", height: 40,),
                     Text("Ramazan və oruc", style: GoogleFonts.alata(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
 
                   ],),
@@ -175,7 +177,7 @@ Widget headerContainers(BuildContext context){
             padding: const EdgeInsets.all(4.0),
             child: InkWell(
               onTap: (){
-                Navigator.push(context, CupertinoPageRoute(builder: (context)=>DiniBilgiler1Page(link: Uri.parse("https://www.gozelislam.com/peygember-efendimiz/"), bashliq: "İman Bilgiləri")));
+                Navigator.push(context, CupertinoPageRoute(builder: (context)=>DiniBilgiler1Page(link: Uri.parse("https://www.gozelislam.com/peygember-efendimiz/"), bashliq: "Peyğambər Əfəndimiz haqqında")));
 
               },
               child: Container(
@@ -184,7 +186,7 @@ Widget headerContainers(BuildContext context){
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset("assets/open-book.png", height: 40,),
+                    Image.asset("assets/muhammad.png", height: 40,),
                     Text("Peyğambər Əfəndimiz", style: GoogleFonts.alata(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
 
                   ],),
@@ -200,7 +202,7 @@ Widget headerContainers(BuildContext context){
             padding: const EdgeInsets.all(4.0),
             child: InkWell(
               onTap: (){
-                Navigator.push(context, CupertinoPageRoute(builder: (context)=>DiniBilgiler1Page(link: Uri.parse("https://www.gozelislam.com/qurani-kerim/"), bashliq: "İman Bilgiləri")));
+                Navigator.push(context, CupertinoPageRoute(builder: (context)=>DiniBilgiler1Page(link: Uri.parse("https://www.gozelislam.com/qurani-kerim/"), bashliq: "Qurani Kərim haqqında ")));
 
               },
               child: Container(
@@ -209,7 +211,7 @@ Widget headerContainers(BuildContext context){
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset("assets/open-book.png", height: 40,),
+                    Image.asset("assets/quran.png", height: 40,),
                     Text("Qurani Kərim", style: GoogleFonts.alata(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),),
                   ],),
                 width: 120,
@@ -424,25 +426,22 @@ Padding buildMaraqliMovzular(String bashliq, String metin, String url, String me
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(child: Text(bashliq, style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 25, color:  Colors.orange,),)),
+                  Expanded(child: Text(bashliq, maxLines: 1, overflow: TextOverflow.ellipsis, style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 25, color:  Colors.indigo,),)),
                 ],),
               subtitle: Padding(
-                padding: EdgeInsets.only(bottom: 130),
+                padding: EdgeInsets.only(bottom: 100),
                 child: Scrollbar(
                   child: SingleChildScrollView(
                     child: Html(
                       data: metin,
                       style: {
-                        "span" : Style(
+                        "span": Style(
                             fontSize: FontSize(16),
-                            fontFamily: GoogleFonts.poppins().fontFamily,
-
+                            fontFamily:  GoogleFonts.poppins().fontFamily
                         ),
-                        "p": Style(
-                            fontSize: FontSize(16),
-                            fontFamily: GoogleFonts.poppins().fontFamily,
-
-
+                        "p" : Style(
+                          fontSize: FontSize(16),
+                          fontFamily: GoogleFonts.poppins().fontFamily,
                         ),
 
 
@@ -605,7 +604,7 @@ Padding buildMovzu(BuildContext context, String bashliq, String metin, String ma
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(bashliq, style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 25, color:  Colors.orange,),),
+                Text(bashliq, maxLines: 1, overflow: TextOverflow.ellipsis, style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 25, color:  Colors.green,),),
               ],),
             subtitle: Padding(
               padding: EdgeInsets.only(bottom: 100),
@@ -617,7 +616,6 @@ Padding buildMovzu(BuildContext context, String bashliq, String metin, String ma
                       "span" : Style(
                         fontSize: FontSize(16),
                         fontFamily: GoogleFonts.poppins().fontFamily,
-
                       ),
                       "p": Style(
                         fontSize: FontSize(16),
@@ -895,7 +893,7 @@ StatefulBuilder buildPrayerTimes(BuildContext context, var base, var extra, Stri
                                             height: MediaQuery.of(context).size.height,
                                             width: MediaQuery.of(context).size.width,
                                           ) : SizedBox(),
-                                          isLoading == true ? Center(child: CircularProgressIndicator(),) : SizedBox()
+                                          isLoading == true ? Center(child: Lottie.asset("assets/progres.json"),) : SizedBox()
                                         ],
                                       );
                                     } ,
@@ -1241,74 +1239,128 @@ Padding buildYoutube(BuildContext context, Video video) {
   );
 }
 
-Padding buildEsma(BuildContext context, int index) {
-  return Padding(
+
+class BuildEsma extends StatefulWidget {
+ int index;
+
+ BuildEsma(this.index);
+
+  @override
+  State<BuildEsma> createState() => _BuildEsmaState();
+}
+
+class _BuildEsmaState extends State<BuildEsma> {
+  GlobalKey previewContainer = new GlobalKey();
+  bool _isLoading = false;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 10 ),
-      child:  Container(
-    width: double.infinity,
-    child: Column(
-      children: [
-        ListTile(
-            leading:  Image.asset("assets/esma.png", width: 23, color: Colors.deepOrange, ),
-            isThreeLine: true,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: RepaintBoundary(
+          key: previewContainer,
+          child: Container(
+            width: double.infinity,
+            child: Column(
               children: [
-                Text(esmaTileListe[index], style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 25, color:  Colors.orange,),),
-                Text(arabItem[index], maxLines: 10, overflow: TextOverflow.ellipsis ,textAlign: TextAlign.justify, style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.deepOrange) ,)
+                ListTile(
+                    style: ListTileStyle.drawer,
+                    leading:  Image.asset("assets/esma.png", width: 23, color: Colors.deepOrange, ),
+                    isThreeLine: true,
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(esmaTileListe[widget.index], style: GoogleFonts.arimaMadurai(fontWeight: FontWeight.bold, fontSize: 25, color:  Colors.orange,),),
+                        Text(arabItem[widget.index], maxLines: 10, overflow: TextOverflow.ellipsis ,textAlign: TextAlign.justify, style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w500, color: Colors.deepOrange) ,)
+
+                      ],
+                    ),
+                    subtitle: Padding(
+                        padding: EdgeInsets.only(bottom: 0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 30,),
+                            Text("”${mena[widget.index]}“" ,textAlign: TextAlign.center, style: GoogleFonts.arimaMadurai(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.indigo) ,),
+                            SizedBox(height: 15,)
+                          ],
+                        )
+
+                    )
+                ),
+               _isLoading ? Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset("assets/header.png", height: 50,),
+                    ),
+                    Text("www.gozelislam.com" ,textAlign: TextAlign.center, style: GoogleFonts.poppins(fontSize: 18,  color: Colors.red) ,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset("assets/header.png", height: 50,),
+                    ),
+                  ],
+                )
+                 : Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: ElevatedButton(onPressed: (){
+                        Navigator.push(context, CupertinoPageRoute(builder: (context)=>EsmaScreen()));
+                        // void _launchUrl(String patha) async {
+                        //   if (!await launch(Uri.parse(patha).toString(), forceSafariVC: true, forceWebView: false )) throw 'Could not launch $patha';
+                        // }
+                        // _launchUrl("https://www.gozelislam.com/");
+                      }, child: Text("Daha çox", style: GoogleFonts.poppins(),),
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent, elevation: 0, shadowColor: Colors.transparent, side: BorderSide(width: .8)),),
+                    ),
+                    IconButton(
+                        onPressed: ()async {
+
+                          setState(() {
+                            _isLoading = true;
+                          });
+
+                        await  Future.delayed(Duration(milliseconds: 300));
+                          Future.delayed(Duration(milliseconds: 1), () async{
+                            await ShareFilesAndScreenshotWidgets().shareScreenshot(
+                                previewContainer,
+                                1200,
+                                "Title",
+                                "${mena[widget.index].substring(0, 2)}.jpg",
+                                "image/jpeg",
+                                text: "Dini Mövzular, Söhbətlər və Sual-Cavab www.gozelislam.com\n${textShareText}");
+                          });
+
+
+                          setState(() {
+                            _isLoading = false;
+                          });
+                        },
+                        // async{
+                        //   await Share.share(" ${arabItem[Jiffy.now().weekOfYear]}  \n ${esmaTileListe[Jiffy.now().weekOfYear]} \n ${mena[Jiffy.now().weekOfYear]}  \n ${textShareText}");
+                        // },
+                        icon: Icon(Icons.share_rounded, color: Colors.red,)),
+                  ],
+                ),
+                SizedBox(height: 10,)
+
+
 
               ],
             ),
-            subtitle: Padding(
-              padding: EdgeInsets.only(bottom: 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(height: 30,),
-                  Text("”${mena[index]}“", maxLines: 10, overflow: TextOverflow.ellipsis ,textAlign: TextAlign.justify, style: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.w500) ,),
-                  SizedBox(height: 15,)
-                ],
-              )
-
-            )
-        ),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: ElevatedButton(onPressed: (){
-                Navigator.push(context, CupertinoPageRoute(builder: (context)=>EsmaScreen()));
-                // void _launchUrl(String patha) async {
-                //   if (!await launch(Uri.parse(patha).toString(), forceSafariVC: true, forceWebView: false )) throw 'Could not launch $patha';
-                // }
-                // _launchUrl("https://www.gozelislam.com/");
-              }, child: Text("Daha çox", style: GoogleFonts.poppins(),),
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent, elevation: 0, shadowColor: Colors.transparent, side: BorderSide(width: .8)),),
+            decoration: BoxDecoration(
+                border: Border.all(width: 0.2, color: Colors.red),
+                color: Theme.of(context).colorScheme.onInverseSurface,
+                borderRadius: BorderRadius.circular(15)
             ),
-            IconButton(
-                onPressed: ()async{
-                  await Share.share(" ${arabItem[Jiffy.now().weekOfYear]}  \n ${esmaTileListe[Jiffy.now().weekOfYear]} \n ${mena[Jiffy.now().weekOfYear]}  \n ${textShareText}");
-                }, icon: Icon(Icons.share_rounded, color: Colors.red,)),
+          )
 
-
-          ],
-        ),
-        SizedBox(height: 10,)
-
-
-
-      ],
-    ),
-    decoration: BoxDecoration(
-        border: Border.all(width: 0.2, color: Colors.red),
-        color: Theme.of(context).colorScheme.onInverseSurface,
-        borderRadius: BorderRadius.circular(15)
-    ),
-  )
-
-  );
+      ),
+    );
+  }
 }
+
 
 Padding buildBanner(BuildContext context, ) {
   var _list = ["assets/dinikitablar1.png", "assets/dinikitablar2.png", "assets/dinikitablar3.png",  ];

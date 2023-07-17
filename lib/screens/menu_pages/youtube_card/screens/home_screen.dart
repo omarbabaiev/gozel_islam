@@ -4,6 +4,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gozel_islam/screens/menu_pages/youtube_card/screens/video_screen.dart';
+import 'package:lottie/lottie.dart';
 import '../../../../../../../Constants.dart';
 import '../models/channel_model.dart';
 import '../models/video_model.dart';
@@ -259,7 +260,7 @@ class _YouTubeCardState extends State<YouTubeCard> {
                     ),
                     _isLoading ? Container(
                       child: Center(
-                        child: CircularProgressIndicator()
+                        child: Lottie.asset("assets/progres.json", height: 100)
                       ),
                       color: Colors.black54,
                       width: double.infinity,
@@ -270,7 +271,7 @@ class _YouTubeCardState extends State<YouTubeCard> {
               ),)
             )
           : Center(
-              child: CircularProgressIndicator(),
+              child: Lottie.asset("assets/progres.json", height: 100),
             ),
     );
   }
